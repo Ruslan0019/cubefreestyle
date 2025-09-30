@@ -2,6 +2,8 @@ import React from "react";
 import { getPage } from "../../../../lib/md";
 import ReactMarkdown from "react-markdown";
 
+export const revalidate = false;
+
 export default async function PrivacyPolicy(props) {
   const { locale } = await props.params;
   const page = await getPage("privacy", locale);

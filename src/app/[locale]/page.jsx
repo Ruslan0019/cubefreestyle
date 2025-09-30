@@ -2,8 +2,10 @@ import { getTranslations } from "next-intl/server";
 import { getPage } from "../../../lib/md";
 import React from "react";
 
+export const revalidate = false;
+
 export default async function HomePage(props) {
-  const { locale } = await props.params;
+  const { locale } = props.params;
   const t = await getTranslations({ locale, namespace: "HomePage" });
   const page = await getPage("home", locale);
 
