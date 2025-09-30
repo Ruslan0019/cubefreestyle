@@ -3,6 +3,7 @@ import { getPage } from "../../../../lib/md";
 import ReactMarkdown from "react-markdown";
 
 export const revalidate = false;
+export const dynamic = "force-static";
 export function generateStaticParams() {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
