@@ -1,0 +1,22 @@
+{
+  "HomePage": {
+    "title": "Ukranian Page",
+    "button": "Замовити виступ"
+  },
+
+  "Navigations": {
+    "about": "Про нас",
+    "portfolio": "Портфоліо",
+    "clients": "Клієнти",
+    "contacts": "Контакти",
+    "privacy-policy": "Політика конфіденційності",
+    "terms-of-use": "Правила користування"
+  },
+  "Footer": {
+    "copyright": "Всі права захищені"
+  },
+  "NotFound": {
+    "title": "Упс, такої сторінки не існує…",
+    "button": "Повернутись на головну сторінку"
+  }
+}

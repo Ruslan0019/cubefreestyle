@@ -1,3 +1,4 @@
+local_backend: true
 backend:
   name: git-gateway
   branch: main
@@ -5,12 +6,62 @@ backend:
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
+i18n:
+  structure: single_file
+  locales: [uk, ru]
+  default_locale: uk
+
 collections:
   - name: "pages"
     label: "Pages"
-    folder: "content/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "body", label: "Content", widget: "markdown" }
+    i18n: true
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "content/pages/home.md"
+        i18n: true
+        fields:
+          - { name: "title", label: "Title", widget: "string", i18n: true }
+          - {
+              name: "hero_heading",
+              label: "Hero Heading",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "hero_content",
+              label: "Hero Content",
+              widget: "markdown",
+              i18n: true,
+            }
+          - {
+              name: "cta_text",
+              label: "CTA Text",
+              widget: "string",
+              i18n: true,
+            }
+
+      - name: "terms"
+        label: "Terms of Use"
+        file: "content/pages/terms.md"
+        i18n: true
+        fields:
+          - { name: "title", label: "Title", widget: "string", i18n: true }
+          - {
+              name: "content",
+              label: "Сontent",
+              widget: "markdown",
+              i18n: true,
+            }
+      - name: "privacy"
+        label: "Privacy Policy"
+        file: "content/pages/privacy.md"
+        i18n: true
+        fields:
+          - { name: "title", label: "Title", widget: "string", i18n: true }
+          - {
+              name: "content",
+              label: "Сontent",
+              widget: "markdown",
+              i18n: true,
+            }

@@ -1,0 +1,22 @@
+{
+  "HomePage": {
+    "title": "Russian Page",
+    "button": "Заказать выступление"
+  },
+
+  "Navigations": {
+    "about": "О нас",
+    "portfolio": "Портфолио",
+    "clients": "Клиенты",
+    "contacts": "Контакты",
+    "privacy-policy": "Политика конфиденциальности",
+    "terms-of-use": "Правила пользования"
+  },
+  "Footer": {
+    "copyright": "Все права защищены"
+  },
+  "NotFound": {
+    "title": "Упс, такой страницы не существует…",
+    "button": "Вернуться на главную страницу"
+  }
+}
