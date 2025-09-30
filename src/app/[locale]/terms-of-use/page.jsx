@@ -3,9 +3,12 @@ import { getPage } from "../../../../lib/md";
 import ReactMarkdown from "react-markdown";
 
 export const revalidate = false;
+export function generateStaticParams() {
+  return [{ locale: "uk" }, { locale: "ru" }];
+}
 
-export default async function TeremsOfUse(props) {
-  const { locale } = await props.params;
+export default async function TeremsOfUse({ params }) {
+  const { locale } = await params;
   const page = await getPage("terms", locale);
   return (
     <section className="text-dark  w-[375px] lg:w-[1024px] xl:w-[1440px] px-6 lg:px-10 xl:px-[160px] mx-auto">
