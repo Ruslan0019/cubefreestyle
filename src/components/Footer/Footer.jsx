@@ -12,7 +12,6 @@ function Footer() {
     <footer className="bg-dark  ">
       <div className="px-4 lg:px-10 xl:px-40 mx-auto  w-[375px] lg:w-[1024px] xl:w-[1440px] mt-12 flex flex-col lg:justify-between items-center lg:flex-row lg:gap-16">
         <Link
-          prefetch={false}
           className="transition-transform duration-200 hover:scale-110"
           href="/"
         >
@@ -25,42 +24,36 @@ function Footer() {
                 lg:grid-flow-col lg:grid-rows-3 lg:gap-x-32 "
         >
           <Link
-            prefetch={false}
             className="transition-transform duration-200 hover:scale-105 text-white text-lg font-normal leading-6"
             href="/about"
           >
             {t("Navigations.about")}
           </Link>
           <Link
-            prefetch={false}
             className="transition-transform duration-200 hover:scale-105 text-white text-lg font-normal leading-6"
             href="/portfolio"
           >
             {t("Navigations.portfolio")}
           </Link>
           <Link
-            prefetch={false}
             className="transition-transform duration-200 hover:scale-105 text-white text-lg font-normal leading-6"
             href="/clients"
           >
             {t("Navigations.clients")}
           </Link>
           <Link
-            prefetch={false}
             className="transition-transform duration-200 hover:scale-105 text-white text-lg font-normal leading-6"
             href="/contacts"
           >
             {t("Navigations.contacts")}
           </Link>
           <Link
-            prefetch={false}
             className="transition-transform duration-200 hover:scale-105 text-white text-lg font-normal leading-6"
             href="/privacy-policy"
           >
             {t("Navigations.privacy-policy")}
           </Link>
           <Link
-            prefetch={false}
             className="transition-transform duration-200 hover:scale-105 text-white text-lg font-normal leading-6"
             href="/terms-of-use"
           >
