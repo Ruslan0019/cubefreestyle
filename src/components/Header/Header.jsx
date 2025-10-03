@@ -16,6 +16,7 @@ export default function Header() {
         <div className="hidden lg:flex items-center justify-between">
           {/* ЛОГО */}
           <Link
+            prefetch={false}
             href="/"
             className="flex items-center space-x-2 transition-transform duration-200 hover:scale-110"
           >
@@ -27,6 +28,7 @@ export default function Header() {
           {/* ДЕСКТОП МЕНЮ */}
           <nav className="flex-1 items-center justify-center space-x-6 flex ">
             <Link
+              prefetch={false}
               href="/about"
               className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
             >
@@ -34,18 +36,21 @@ export default function Header() {
             </Link>
 
             <Link
+              prefetch={false}
               href="/portfolio"
               className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
             >
               {t("portfolio")}
             </Link>
             <Link
+              prefetch={false}
               href="/clients"
               className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
             >
               {t("clients")}
             </Link>
             <Link
+              prefetch={false}
               href="/contacts"
               className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
             >
@@ -127,7 +132,7 @@ export default function Header() {
 
           {/* ЦЕНТР: логотип */}
           <div className="flex justify-center">
-            <Link href="/" className="flex items-center">
+            <Link prefetch={false} href="/" className="flex items-center">
               <svg
                 className="w-20 h-12"
                 viewBox="0 0 80 48"
@@ -164,24 +169,28 @@ export default function Header() {
       {isOpen && (
         <div className="flex flex-col justify-center items-center lg:hidden border-t bg-white px-4 py-2 space-y-2">
           <Link
+            prefetch={false}
             href="/about"
             className="block text-gray-700 hover:text-primary"
           >
             {t("about")}
           </Link>
           <Link
+            prefetch={false}
             href="/portfolio"
             className="block text-gray-700 hover:text-primary"
           >
             {t("portfolio")}
           </Link>
           <Link
+            prefetch={false}
             href="/clients"
             className="block text-gray-700 hover:text-primary"
           >
             {t("clients")}
           </Link>
           <Link
+            prefetch={false}
             href="/contacts"
             className="block text-gray-700 hover:text-primary"
           >
