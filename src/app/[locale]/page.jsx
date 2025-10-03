@@ -47,9 +47,11 @@ export default async function HomePage(props) {
       {/* hero section */}
       <section className="relative justify-center lg:justify-start w-full h-[700px] lg:h-[680px] xl:h-[780px] flex items-center">
         <video
+          poster="/uploads/poster.webp"
           className="absolute top-0 left-0 w-full h-full object-cover"
           src="/videos/freestyle.webm"
           autoPlay
+          fetchPriority="high"
           loop
           preload="auto"
           suppressHydrationWarning
