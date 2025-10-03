@@ -2,7 +2,9 @@ import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import { NextIntlClientProvider } from "next-intl";
-
+export const metadata = {
+  charset: "UTF-8",
+};
 export default function RootLayout({ children }) {
   return (
     <html>

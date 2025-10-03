@@ -1,4 +1,4 @@
-import { usePathname, useRouter } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 
 export default function LocaleSwitcher() {
@@ -14,13 +14,19 @@ export default function LocaleSwitcher() {
   };
 
   return (
-    <select
-      className="text-gray-700 cursor-pointer"
-      value={locale}
-      onChange={(e) => switchLocale(e.target.value)}
-    >
-      <option value="uk">UK</option>
-      <option value="ru">RU</option>
-    </select>
+    <div>
+      <select
+        className="text-gray-700 cursor-pointer"
+        value={locale}
+        onChange={(e) => switchLocale(e.target.value)}
+      >
+        <option value="uk">UK</option>
+        <option value="ru">RU</option>
+      </select>
+      <div className="text-dark">
+        <Link href="/uk">UK</Link>
+        <Link href="/ru">RU</Link>
+      </div>
+    </div>
   );
 }

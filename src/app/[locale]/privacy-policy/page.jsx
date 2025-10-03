@@ -19,7 +19,7 @@ export default async function PrivacyPolicy(props) {
       >
         {page.title}
       </h1>
-      <div className=" font-normal text-lg leading-6 mt-[58px] mb-[128px]">
+      <div className="flex flex-col gap-6 font-normal text-lg leading-6 mt-[58px] mb-[128px]">
         <ReactMarkdown>{page.content}</ReactMarkdown>
       </div>
     </section>

@@ -21,23 +21,40 @@ collections:
         file: "content/pages/home.md"
         i18n: true
         fields:
-          - { name: "title", label: "Title", widget: "string", i18n: true }
           - {
-              name: "hero_heading",
-              label: "Hero Heading",
+              name: "title_seo",
+              label: "Title_Seo",
               widget: "string",
               i18n: true,
             }
           - {
-              name: "hero_content",
-              label: "Hero Content",
+              name: "description_seo",
+              label: "Description_Seo",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "hero_title",
+              label: "Hero_title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "hero_button",
+              label: "Hero_button",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "about_title",
+              label: "About_Title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "about_description",
+              label: "About_Description",
               widget: "markdown",
-              i18n: true,
-            }
-          - {
-              name: "cta_text",
-              label: "CTA Text",
-              widget: "string",
               i18n: true,
             }
 
