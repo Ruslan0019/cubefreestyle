@@ -45,8 +45,10 @@ export default function RootLayout({ children }) {
       </head>
       <body className="flex flex-col min-h-screen ">
         <NextIntlClientProvider>
-          <Header />
-          <main className="flex-1 ">{children}</main>
+          <main>
+            <Header />
+            {children}
+          </main>
           <Footer />
         </NextIntlClientProvider>
       </body>

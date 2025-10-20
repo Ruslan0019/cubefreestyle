@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="w-full border-b bg-white shadow-sm">
-      <div className="mx-auto w-[375px] lg:w-[1024px] xl:w-[1440px] px-6 lg:px-10 xl:px-[160px] py-3 lg:py-4 ">
+      <div className="mx-auto w-full max-w-[375px] lg:max-w-[1024px] xl:max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-[160px] py-3 lg:py-4">
         {/* ДЕСКТОП ХЕДЕР */}
         <div className="hidden lg:flex items-center justify-between">
           {/* ЛОГО */}

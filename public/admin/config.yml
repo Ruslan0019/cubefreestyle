@@ -57,6 +57,48 @@ collections:
               widget: "markdown",
               i18n: true,
             }
+          - {
+              name: "whyUs_title",
+              label: "whyUs_title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "whyUs_card1_title",
+              label: "whyUs_card1_title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "whyUs_card1_description",
+              label: "whyUs_card1_description",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "whyUs_card2_title",
+              label: "whyUs_card2_title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "whyUs_card2_description",
+              label: "whyUs_card2_description",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "whyUs_card3_title",
+              label: "whyUs_card3_title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "whyUs_card3_description",
+              label: "whyUs_card3_description",
+              widget: "string",
+              i18n: true,
+            }
 
       - name: "terms"
         label: "Terms of Use"
@@ -82,3 +124,102 @@ collections:
               widget: "markdown",
               i18n: true,
             }
+      - name: "service"
+        label: "Послуга"
+        file: "content/pages/service.md"
+        i18n: true
+        fields:
+          - { name: "title", label: "Title", widget: "string", i18n: true }
+          - {
+              name: "content",
+              label: "Сontent",
+              widget: "markdown",
+              i18n: true,
+            }
+  - name: "services"
+    label: "Послуги"
+    folder: "content/services"
+    i18n: true
+    create: true
+    slug: "{{fields.slug}}"
+    fields:
+      - { name: "title", label: "Назва послуги", widget: "string", i18n: true }
+      - {
+          name: "short_description",
+          label: "Короткий опис",
+          widget: "string",
+          i18n: true,
+        }
+      - { name: "image", label: "Фото", widget: "image", i18n: true }
+      - {
+          name: "slug",
+          label: "URL (slug)",
+          widget: "string",
+          hint: "наприклад: vystup-na-den-narodzhennya",
+          i18n: true,
+        }
+      - { name: "date", label: "Дата", widget: "string", i18n: true }
+      - { name: "body", label: "Опис послуги", widget: "markdown", i18n: true }
+  - name: "reviews"
+    label: "Відгуки"
+    folder: "content/reviews"
+    i18n: true
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.name}}"
+    fields:
+      - { name: "name", label: "Ім'я", widget: "string", i18n: true }
+      - { name: "text", label: "Текст відгуку", widget: "text", i18n: true }
+      - { name: "photo", label: "Фото", widget: "image", i18n: true }
+      - {
+          name: "rating",
+          label: "Рейтинг (1–5)",
+          widget: "number",
+          min: 1,
+          max: 5,
+          default: 5,
+          i18n: true,
+        }
+      - { name: "date", label: "Дата", widget: "datetime", i18n: true }
+  - name: "clients"
+    label: "Клієнти"
+    i18n: false
+    files:
+      - file: "content/clients.yaml"
+        label: "Список клієнтів"
+        name: "clients"
+        fields:
+          - label: "Клієнти"
+            name: "clients"
+            widget: "list"
+            fields:
+              - { label: "Логотип", name: "image", widget: "image" }
+              - { label: "Alt текст", name: "alt", widget: "string" }
+  - name: "team"
+    label: "Наша команда"
+    folder: "content/team"
+    i18n: true
+    create: true
+    slug: "{{fields.slug}}"
+    fields:
+      - { name: "name", label: "Ім’я", widget: "string", i18n: true }
+      - { name: "slug", label: "Slug (URL)", widget: "string", i18n: true }
+      - { name: "role", label: "Посада/Роль", widget: "string", i18n: true }
+      - { name: "status", label: "Статус", widget: "string", i18n: true }
+      - { name: "photo", label: "Головне фото", widget: "image", i18n: true }
+      - { name: "bio", label: "Коротке біо", widget: "markdown", i18n: true }
+      - label: "Досягнення"
+        name: "achievements"
+        widget: "list"
+        i18n: true
+        fields:
+          - label: "Текст"
+            name: "text"
+            widget: "string"
+            i18n: true
+      - label: "Галерея"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - label: "Фото"
+            name: "image"
+            widget: "image"
