@@ -26,7 +26,7 @@ export default function ServicesList({ services = [] }) {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute bottom-0 left-0 w-full h-[138px] bg-gradient-to-b from-transparent to-black/90"></div>
+                <div className="absolute bottom-0 left-0 w-full h-[138px] bg-gradient-to-b from-transparent to-black/90" />
                 <div className="absolute bottom-3 left-3 right-3 text-white">
                   <h3 className="font-semibold text-[18px] leading-[24px] mb-1">
                     {service.title}
@@ -42,12 +42,12 @@ export default function ServicesList({ services = [] }) {
       </div>
 
       {/* 💻 Планшет */}
-      <div className="hidden lg:grid xl:hidden grid-cols-3 gap-4 w-full max-w-[992px] mx-auto">
+      <div className="hidden lg:flex xl:hidden flex-wrap justify-center gap-4 w-full max-w-[992px] mx-auto">
         {services.map((service) => (
           <Link
             href={`/services/${service.slug}`}
             key={service.slug}
-            className="relative w-full h-[320px] rounded-sm overflow-hidden group"
+            className="relative flex-1 basis-[30%] h-[320px] min-w-[300px] rounded-sm overflow-hidden group"
           >
             <Image
               src={service.image}
@@ -55,7 +55,7 @@ export default function ServicesList({ services = [] }) {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute bottom-0 left-0 w-full h-[160px] bg-gradient-to-b from-transparent to-black/90"></div>
+            <div className="absolute bottom-0 left-0 w-full h-[160px] bg-gradient-to-b from-transparent to-black/90" />
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <h3 className="font-bold text-[22px] leading-[32px] mb-2">
                 {service.title}
@@ -69,12 +69,12 @@ export default function ServicesList({ services = [] }) {
       </div>
 
       {/* 🖥️ Десктоп */}
-      <div className="hidden xl:grid grid-cols-3 gap-4 w-full max-w-[1412px] mx-auto">
+      <div className="hidden xl:flex flex-wrap justify-center gap-4 w-full max-w-[1394px] mx-auto">
         {services.map((service) => (
           <Link
             href={`/services/${service.slug}`}
             key={service.slug}
-            className="relative w-full h-[454px] rounded-sm overflow-hidden group"
+            className="relative flex-1 basis-[30%] h-[454px] w-[454px] rounded-sm overflow-hidden group"
           >
             <Image
               src={service.image}
@@ -82,7 +82,7 @@ export default function ServicesList({ services = [] }) {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute bottom-0 left-0 w-full h-[226px] bg-gradient-to-b from-transparent to-black/90"></div>
+            <div className="absolute bottom-0 left-0 w-full h-[226px] bg-gradient-to-b from-transparent to-black/90" />
             <div className="absolute bottom-[32px] left-[32px] right-[32px] text-white">
               <h3 className="font-bold text-[22px] leading-[32px] mb-2">
                 {service.title}

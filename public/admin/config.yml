@@ -108,10 +108,11 @@ collections:
           - { name: "title", label: "Title", widget: "string", i18n: true }
           - {
               name: "content",
-              label: "Сontent",
+              label: "Content",
               widget: "markdown",
               i18n: true,
             }
+
       - name: "privacy"
         label: "Privacy Policy"
         file: "content/pages/privacy.md"
@@ -120,10 +121,11 @@ collections:
           - { name: "title", label: "Title", widget: "string", i18n: true }
           - {
               name: "content",
-              label: "Сontent",
+              label: "Content",
               widget: "markdown",
               i18n: true,
             }
+
       - name: "service"
         label: "Послуга"
         file: "content/pages/service.md"
@@ -132,10 +134,11 @@ collections:
           - { name: "title", label: "Title", widget: "string", i18n: true }
           - {
               name: "content",
-              label: "Сontent",
+              label: "Content",
               widget: "markdown",
               i18n: true,
             }
+
   - name: "services"
     label: "Послуги"
     folder: "content/services"
@@ -150,7 +153,30 @@ collections:
           widget: "string",
           i18n: true,
         }
-      - { name: "image", label: "Фото", widget: "image", i18n: true }
+      - { name: "image", label: "Головне фото", widget: "image", i18n: true }
+      - {
+          name: "video",
+          label: "Відео (mp4 або webm)",
+          widget: "file",
+          i18n: true,
+          required: false,
+          hint: "Додайте файл відео для блоку зверху (Hero)",
+        }
+      - {
+          name: "gallery",
+          label: "Галерея фото",
+          widget: "list",
+          i18n: true,
+          required: false,
+          field:
+            {
+              name: "image",
+              label: "Фото",
+              widget: "image",
+              allow_multiple: false,
+            },
+          hint: "Додайте кілька фото для галереї послуги",
+        }
       - {
           name: "slug",
           label: "URL (slug)",
@@ -160,6 +186,7 @@ collections:
         }
       - { name: "date", label: "Дата", widget: "string", i18n: true }
       - { name: "body", label: "Опис послуги", widget: "markdown", i18n: true }
+
   - name: "reviews"
     label: "Відгуки"
     folder: "content/reviews"
@@ -180,6 +207,7 @@ collections:
           i18n: true,
         }
       - { name: "date", label: "Дата", widget: "datetime", i18n: true }
+
   - name: "clients"
     label: "Клієнти"
     i18n: false
@@ -194,6 +222,7 @@ collections:
             fields:
               - { label: "Логотип", name: "image", widget: "image" }
               - { label: "Alt текст", name: "alt", widget: "string" }
+
   - name: "team"
     label: "Наша команда"
     folder: "content/team"
@@ -223,3 +252,15 @@ collections:
           - label: "Фото"
             name: "image"
             widget: "image"
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    create: false
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - {
+          name: "images",
+          label: "Images",
+          widget: "list",
+          field: { label: Image, name: image, widget: image },
+        }

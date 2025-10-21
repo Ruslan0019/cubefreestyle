@@ -23,10 +23,6 @@ export default function LocaleSwitcher() {
         <option value="uk">UK</option>
         <option value="ru">RU</option>
       </select>
-      <div className="text-dark">
-        <Link href="/uk">UK</Link>
-        <Link href="/ru">RU</Link>
-      </div>
     </div>
   );
 }

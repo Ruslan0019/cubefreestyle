@@ -1,57 +1,41 @@
-import Footer from "@/components/Footer/Footer";
 import "./globals.css";
-import Header from "@/components/Header/Header";
-import { NextIntlClientProvider } from "next-intl";
+
+export const viewport = {
+  themeColor: "#0a0a0a",
+};
+
 export const metadata = {
   charset: "UTF-8",
+  title: "Cube Freestyle",
+  description:
+    "Шоу футбольного фристайлу в Україні — команда CUBE. Замовте виступ просто зараз!",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon0.svg", type: "image/svg+xml" },
+      { url: "/icon1.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      {
+        url: "/web-app-manifest-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/web-app-manifest-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    apple: "/apple-icon.png",
+  },
+  manifest: "/manifest.json",
+  other: {
+    "apple-mobile-web-app-title": "cubefreestyle",
+    "mask-icon": "/icon0.svg",
+    "msapplication-TileColor": "#0a0a0a",
+  },
 };
+
 export default function RootLayout({ children }) {
-  return (
-    <html>
-      <head>
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <link rel="icon" type="image/svg+xml" href="/icon0.svg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon1.png" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
-          href="/favicon-96x96.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/web-app-manifest-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="512x512"
-          href="/web-app-manifest-512x512.png"
-        />
-
-        {/* apple / touch */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="cubefreestyle" />
-
-        {/* PWA / manifest */}
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0a0a0a" />
-
-        {/* optional helpers */}
-        <link rel="mask-icon" href="/icon0.svg" color="#0a0a0a" />
-        <meta name="msapplication-TileColor" content="#0a0a0a" />
-      </head>
-      <body className="flex flex-col min-h-screen ">
-        <NextIntlClientProvider>
-          <main>
-            <Header />
-            {children}
-          </main>
-          <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+  return <>{children}</>;
 }

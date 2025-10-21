@@ -4,40 +4,46 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useTranslations } from "next-intl";
 
-export default function ReviewsList({ reviews = [] }) {
+export default function ReviewsList({
+  reviews = [],
+  titleColor = "",
+  arrowColor = "",
+  className = "",
+}) {
+  const t = useTranslations();
+
   return (
-    <section className="flex items-end w-full bg-[#0B63E5] -mt-[110px] lg:-mt-[144px] xl:-mt-[208px] h-[582px] lg:h-[672px] xl:h-[768px]">
-      <div className=" w-[375px] lg:w-[800px] xl:w-[1104px] mx-auto flex flex-col items-center gap-8 lg:gap-14 px-4 lg:px-0 py-12 pt-24 xl:pt-32 ">
-        <h2 className="text-white font-bold text-[36px] leading-[40px] text-center lg:text-[48px] lg:leading-[56px]">
-          Відгуки
-        </h2>
+    <div
+      className={`max-w-[375px] lg:max-w-[800px] xl:max-w-[1104px] mx-auto flex flex-col items-center gap-8 lg:gap-14 ${className}`}
+    >
+      <h2
+        className={`font-bold text-[36px] leading-[40px] text-center lg:text-[48px] lg:leading-[56px] ${titleColor}`}
+      >
+        {t("Reviews.title")}
+      </h2>
 
-        <div className="w-full relative">
+      <div className="max-w-full relative">
+        <div className="relative max-w-full [--shadow-pad:16px] -mx-[var(--shadow-pad)]">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={24}
+            spaceBetween={16}
             slidesPerView={1}
             navigation={{
               prevEl: ".reviews-prev",
               nextEl: ".reviews-next",
             }}
             breakpoints={{
-              1024: {
-                slidesPerView: 2,
-                spaceBetween: 24,
-              },
-              1440: {
-                slidesPerView: 3,
-                spaceBetween: 24,
-              },
+              1024: { slidesPerView: 2, spaceBetween: 24 },
+              1440: { slidesPerView: 3, spaceBetween: 24 },
             }}
-            className="!px-0"
+            className="!px-[var(--shadow-pad)] !py-[var(--shadow-pad)] !overflow-hidden "
           >
             {reviews.map((r, i) => (
-              <SwiperSlide key={i} className="!flex !justify-center">
-                <div className="w-[343px] lg:w-[352px] h-[216px] bg-white rounded-[4px] shadow-[0px_4px_24px_rgba(20,25,26,0.12)] p-8 flex flex-col justify-center gap-4">
-                  <div className="flex items-center justify-between w-full">
+              <SwiperSlide key={i} className="!flex !justify-center ">
+                <div className="max-w-[343px] lg:max-w-[352px] h-[216px] bg-white rounded-[4px] shadow-[0_4px_24px_rgba(20,25,26,0.12)] p-8 flex flex-col justify-center gap-4">
+                  <div className="flex items-center justify-between max-w-full">
                     <div className="flex items-center gap-4">
                       <Image
                         src={r.photo}
@@ -71,45 +77,21 @@ export default function ReviewsList({ reviews = [] }) {
               </SwiperSlide>
             ))}
           </Swiper>
+        </div>
 
-          <div className="mt-4 lg:mt-8 w-full flex justify-center gap-12">
-            <button type="button" className="reviews-prev">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M15 6L9 12L15 18"
-                  stroke="#FFFFFF"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <button type="button" className="reviews-next">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M9 6L15 12L9 18"
-                  stroke="#FFFFFF"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+        <div className="mt-4 lg:mt-8 max-w-full flex justify-center gap-12">
+          <button type="button" className="reviews-prev">
+            <svg width="24" height="24" style={{ color: arrowColor }}>
+              <use href="/sprite.svg#ArrowLeftGray" />
+            </svg>
+          </button>
+          <button type="button" className="reviews-next">
+            <svg width="24" height="24" style={{ color: arrowColor }}>
+              <use href="/sprite.svg#ArrowRightGray" />
+            </svg>
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

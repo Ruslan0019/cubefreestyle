@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import LangSwitcher from "../LangSwitcher/LangSwitcher";
-import { useTranslations } from "use-intl";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);

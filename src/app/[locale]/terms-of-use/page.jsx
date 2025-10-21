@@ -1,6 +1,7 @@
 import React from "react";
 import { getPage } from "../../../../lib/md";
 import ReactMarkdown from "react-markdown";
+import { getLocale } from "next-intl/server";
 
 export const revalidate = false;
 export const dynamic = "force-static";
@@ -11,6 +12,8 @@ export function generateStaticParams() {
 export default async function TeremsOfUse({ params }) {
   const { locale } = await params;
   const page = await getPage("terms", locale);
+  const localei18n = await getLocale();
+  console.log(localei18n);
   return (
     <section className="text-dark  w-[375px] lg:w-[1024px] xl:w-[1440px] px-6 lg:px-10 xl:px-[160px] mx-auto">
       <h1

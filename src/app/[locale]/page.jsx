@@ -160,7 +160,12 @@ export default async function HomePage(props) {
         </div>
       </section>
       <ServicesList services={services} />
-      <ReviewsList reviews={reviews} />
+      <section className="flex justify-center items-end w-full bg-[#0B63E5]  -mt-[110px] lg:-mt-[144px] xl:-mt-[208px] h-[582px] lg:h-[672px] xl:h-[768px]">
+        <div className="mb-12">
+          <ReviewsList reviews={reviews} />
+        </div>
+      </section>
+
       <ClientsSlider clients={clients} />
       <TeamList team={team} locale={locale} />
       <section className="mx-auto w-full max-w-[376px] lg:max-w-[800px] h-[662px] lg:h-[644px] px-6 lg:px-10 xl:px-[160px] aspect-[376/500] lg:aspect-[800/450] relative">
