@@ -6,12 +6,14 @@ import ReviewsList from "../ReviewsList/ReviewsList";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import ContactForm from "../ContactForm/ContactForm";
 import HeroArc from "../HeroArc/HeroArc";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+
 export default async function ServiceClient({ serviceData }) {
+  const locale = await getLocale();
   const gallery = await getCollection("gallery");
   const images = gallery[0]?.images || [];
-  const reviews = await getCollection("reviews");
-  const t = getLocale();
+  const reviews = await getCollection("reviews", locale);
+  const t = await getTranslations();
 
   return (
     <section className="flex flex-col items-center w-full bg-white text-dark">

@@ -1,13 +1,67 @@
-import React from "react";
+import HeroArc from "@/components/HeroArc/HeroArc";
+import { getCollection } from "../../../../lib/content";
+import { getLocale } from "next-intl/server";
+import Image from "next/image";
+import ReviewsList from "@/components/ReviewsList/ReviewsList";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
-export const revalidate = false;
-export const dynamic = "force-static";
-export function generateStaticParams() {
-  return [{ locale: "uk" }, { locale: "ru" }];
-}
+export async function Portfolio() {
+  const locale = await getLocale();
+  const reviews = await getCollection("reviews", locale);
+  const events = await getCollection("portfolio", locale);
 
-function Portfolio() {
-  return <div className="text-dark">Portfolio</div>;
+  return (
+    <section className="flex flex-col items-center w-full bg-white text-dark">
+      <div className="relative w-full flex flex-col items-center justify-start bg-white">
+        <HeroArc />
+        <h1
+          className="mt-12 lg:mt-14 text-[36px] z-1
+         leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] 
+         font-bold text-white text-center max-w-[343px] lg:max-w-[983px]"
+        >
+          Наше портфоліо
+        </h1>
+
+        {/* Контейнер с flex вместо grid */}
+        <div className="w-full px-4 xl:px-40 mt-14 xl:mt-24 z-1 flex justify-center">
+          <div className="flex  flex-wrap justify-center gap-y-4 lg:gap-x-4 lg:gap-y-12 xl:gap-x-8 xl:gap-y-14 max-w-[343px] lg:max-w-[992px] xl:max-w-[1120px] ">
+            {events.map((event, idx) => (
+              <article
+                key={idx}
+                className="flex flex-col cursor-pointer  shadow-xl rounded-sm
+                         w-full max-w-[343px] lg:max-w-[320px] xl:max-w-[352px]"
+              >
+                <Image
+                  width={343}
+                  height={349}
+                  src={event.cover}
+                  alt={event.title}
+                  className="w-full h-[349px] lg:h-[325px] xl:h-[358px] object-cover rounded-t-sm"
+                />
+                <div className="p-4 flex flex-col flex-grow">
+                  <h2 className="text-lg font-semibold mb-2">{event.title}</h2>
+                  <p className="text-sm text-gray-600 line-clamp-3 flex-grow">
+                    {event.description}
+                  </p>
+                  <time className="text-xs text-gray-500 mt-2 block">
+                    {new Date(event.date).toLocaleDateString(locale)}
+                  </time>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+      <section className="pt-24 pb-12 xl:py-32">
+        <ReviewsList
+          reviews={reviews}
+          titleColor={"#02142e"}
+          arrowColor="#838E9E"
+        />
+      </section>
+      <ContactForm />
+    </section>
+  );
 }
 
 export default Portfolio;

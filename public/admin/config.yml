@@ -160,7 +160,6 @@ collections:
           widget: "file",
           i18n: true,
           required: false,
-          hint: "Додайте файл відео для блоку зверху (Hero)",
         }
       - {
           name: "gallery",
@@ -175,17 +174,68 @@ collections:
               widget: "image",
               allow_multiple: false,
             },
-          hint: "Додайте кілька фото для галереї послуги",
         }
-      - {
-          name: "slug",
-          label: "URL (slug)",
-          widget: "string",
-          hint: "наприклад: vystup-na-den-narodzhennya",
-          i18n: true,
-        }
+      - { name: "slug", label: "URL (slug)", widget: "string", i18n: true }
       - { name: "date", label: "Дата", widget: "string", i18n: true }
       - { name: "body", label: "Опис послуги", widget: "markdown", i18n: true }
+
+  - name: "portfolio"
+    label: "Портфоліо"
+    label_singular: "Івент"
+    folder: "content/portfolio"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["date", "title"]
+    summary: "{{title}} — {{date}}"
+    i18n: true
+    fields:
+      - { label: "Назва івенту", name: "title", widget: "string", i18n: true }
+
+      - {
+          label: "Короткий опис (3 рядки)",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - {
+          label: "Дата івенту",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Обкладинка (картка)",
+          name: "cover",
+          widget: "image",
+          i18n: true,
+        }
+      - label: "Медіа (до 10)"
+        name: "media"
+        widget: "list"
+        max: 10
+        fields:
+          - {
+              label: "Тип",
+              name: "kind",
+              widget: "select",
+              options: ["image", "video"],
+              default: "image",
+            }
+          - { label: "Файл", name: "file", widget: "file" }
+          - {
+              label: "Alt / Підпис (для зображень)",
+              name: "alt",
+              widget: "string",
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: "Постер (для відео)",
+              name: "poster",
+              widget: "image",
+              required: false,
+            }
+      - { label: "Теги", name: "tags", widget: "list", required: false }
 
   - name: "reviews"
     label: "Відгуки"
@@ -204,7 +254,6 @@ collections:
           min: 1,
           max: 5,
           default: 5,
-          i18n: true,
         }
       - { name: "date", label: "Дата", widget: "datetime", i18n: true }
 
@@ -252,6 +301,7 @@ collections:
           - label: "Фото"
             name: "image"
             widget: "image"
+
   - name: "gallery"
     label: "Gallery"
     folder: "content/gallery"
@@ -262,5 +312,5 @@ collections:
           name: "images",
           label: "Images",
           widget: "list",
-          field: { label: Image, name: image, widget: image },
+          field: { label: "Image", name: "image", widget: "image" },
         }
