@@ -19,7 +19,6 @@ export default function GallerySection({ images = [] }) {
           w-full max-w-[343px] lg:max-w-[944px] xl:max-w-[1120px]
         "
       >
-        {/* 👉 Большой слайдер */}
         <Swiper
           modules={[Thumbs]}
           thumbs={{ swiper: thumbsSwiper }}
@@ -42,15 +41,14 @@ export default function GallerySection({ images = [] }) {
           ))}
         </Swiper>
 
-        {/* 👉 Тумбы */}
         <Swiper
           onSwiper={setThumbsSwiper}
           watchSlidesProgress
           slidesPerView={2}
           spaceBetween={8}
           breakpoints={{
-            1024: { slidesPerView: 4, spaceBetween: 16 }, // tablet
-            1280: { slidesPerView: 6, spaceBetween: 16 }, // desktop
+            1024: { slidesPerView: 4, spaceBetween: 16 },
+            1280: { slidesPerView: 6, spaceBetween: 16 },
           }}
           className="w-full h-[80px] lg:h-[108px] xl:h-[108px]"
         >
@@ -74,7 +72,6 @@ export default function GallerySection({ images = [] }) {
           ))}
         </Swiper>
 
-        {/* 👉 Индикаторы */}
         <div className="flex flex-row gap-2 h-[8px] mt-2">
           {images.map((_, idx) => (
             <span

@@ -7,14 +7,10 @@ export default async function LocaleLayout({ children, params }) {
   const messages = (await import(`../../../messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale}>
-      <body className="flex flex-col min-h-screen ">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          {children}
-          <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <Header />
+      {children}
+      <Footer />
+    </NextIntlClientProvider>
   );
 }

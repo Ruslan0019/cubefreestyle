@@ -1,35 +1,40 @@
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-export default function TeamList({ team = [], locale = "uk" }) {
+export default async function TeamList({ team = [], locale = "uk" }) {
+  const t = await getTranslations();
   return (
-    <section className="w-full px-6 lg:px-16 py-12 bg-white">
-      <h2 className="text-2xl lg:text-3xl font-bold text-center text-[#001F54] mb-10">
-        {locale === "ru" ? "Наша команда" : "Наша команда"}
+    <section className="w-full  bg-white">
+      <h2 className="text-4xl lg:text-5xl font-bold text-center text-[#001F54] mb-8 lg:mb-14">
+        {t("TeamList.title")}
       </h2>
 
       <div
         className="
-          grid
-          grid-cols-2
-          lg:grid-cols-3
-          xl:grid-cols-4
-          gap-6
-          justify-items-center
+          grid grid-cols-2 gap-[7px]           /* мобилка: строго 2 в ряд */
+          max-w-[343px] mx-auto
+          lg:flex lg:flex-wrap lg:justify-center lg:gap-4 
+          lg:max-w-[1024px] xl:max-w-[1392px]
         "
       >
         {team.map((member) => (
           <Link
             key={member.slug}
             href={`/team/${member.slug}`}
-            className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-transform hover:scale-[1.02]"
+            className="
+              group block overflow-hidden rounded-xl shadow-md hover:shadow-lg 
+              transition-transform hover:scale-[1.02]
+              w-full                  /* в grid ячейке занимает всю ширину */
+              lg:w-[240px] xl:w-[336px]  /* как и было на больших брейкпоинтах */
+            "
           >
-            <div className="relative w-[160px] sm:w-[200px] md:w-[240px] xl:w-[280px] aspect-[4/5]">
+            <div className="relative aspect-[4/5] w-full">
               <Image
-                src={member.photo}
+                src={member.thumbnail}
                 alt={member.name}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className="object-cover"
               />
 
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent text-white px-3 py-3">

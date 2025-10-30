@@ -21,5 +21,11 @@
   },
   "Reviews": {
     "title": "Відгуки"
+  },
+  "TeamList": {
+    "title": "Наша команда"
+  },
+  "ClientsSlider": {
+    "title": "Наші клієнти"
   }
 }

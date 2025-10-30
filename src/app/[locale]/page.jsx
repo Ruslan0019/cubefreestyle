@@ -165,10 +165,14 @@ export default async function HomePage(props) {
           <ReviewsList reviews={reviews} />
         </div>
       </section>
+      <section className="mt-12 xl:mt-32">
+        <ClientsSlider clients={clients} />
+      </section>
 
-      <ClientsSlider clients={clients} />
-      <TeamList team={team} locale={locale} />
-      <section className="mx-auto w-full max-w-[376px] lg:max-w-[800px] h-[662px] lg:h-[644px] px-6 lg:px-10 xl:px-[160px] aspect-[376/500] lg:aspect-[800/450] relative">
+      <section className="mt-24 xl:mt-32">
+        <TeamList team={team} locale={locale} />
+      </section>
+      <section className=" mt-12 xl:mt-32 mx-auto w-full max-w-[376px] lg:max-w-[800px] h-[662px] lg:h-[644px] px-6 lg:px-10 xl:px-[160px] aspect-[376/500] lg:aspect-[800/450] relative">
         <Image
           src="/uploads/mapMobile.png"
           alt="Карта"
@@ -186,7 +190,9 @@ export default async function HomePage(props) {
         />
       </section>
 
-      <ContactForm />
+      <section className=" w-full mt-12 xl:mt-32">
+        <ContactForm />
+      </section>
     </div>
   );
 }

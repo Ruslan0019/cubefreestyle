@@ -5,13 +5,11 @@ export default function ContactForm({ services = [] }) {
   py-12 lg:py-16 px-4 lg:px-[131px] xl:px-[339px] w-full 
   bg-[url('/BackgroundForm.svg')] bg-cover bg-center bg-no-repeat"
     >
-      {/* Контейнер формы */}
       <form
         method="post"
         action="/api/contact"
         className="flex flex-col gap-6 w-full max-w-[343px] lg:max-w-[762px]"
       >
-        {/* honeypot */}
         <input
           type="text"
           name="hp"
@@ -21,7 +19,6 @@ export default function ContactForm({ services = [] }) {
         />
 
         <div className="gap-6 flex flex-col lg:flex-row">
-          {/* Имя */}
           <label className="flex flex-col text-left flex-1">
             <span className="block text-white/90 mb-1">Ім’я*</span>
             <input
@@ -33,7 +30,6 @@ export default function ContactForm({ services = [] }) {
             />
           </label>
 
-          {/* Телефон */}
           <label className="flex flex-col text-left flex-1">
             <span className="block text-white/90 mb-1">Телефон*</span>
             <input
@@ -47,7 +43,6 @@ export default function ContactForm({ services = [] }) {
           </label>
         </div>
 
-        {/* Сервис */}
         <label className="flex flex-col text-left">
           <span className="block text-white/90 mb-1">Оберіть послугу*</span>
           <select
@@ -64,7 +59,6 @@ export default function ContactForm({ services = [] }) {
           </select>
         </label>
 
-        {/* Сообщение */}
         <label className="flex flex-col text-left">
           <span className="block text-white/90 mb-1">Повідомлення</span>
           <textarea
@@ -75,7 +69,6 @@ export default function ContactForm({ services = [] }) {
           />
         </label>
 
-        {/* Кнопка */}
         <div className="flex justify-center">
           <button
             type="submit"
