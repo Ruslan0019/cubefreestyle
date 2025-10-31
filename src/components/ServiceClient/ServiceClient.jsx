@@ -34,7 +34,7 @@ export default async function ServiceClient({ serviceData }) {
         )}
         <div className="mt-6 xl:mt-10 flex justify-center w-full px-4">
           <button className="w-full max-w-[343px] lg:max-w-[400px] px-6 py-4 bg-[#0B63E5] text-white font-semibold rounded shadow-md hover:bg-blue-700 transition text-center">
-            {t("HomePage.button")}
+            {t("Home_page.button")}
           </button>
         </div>
       </div>

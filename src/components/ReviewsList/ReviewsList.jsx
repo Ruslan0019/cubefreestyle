@@ -16,7 +16,7 @@ export default function ReviewsList({
 
   return (
     <div
-      className={`max-w-[375px] lg:max-w-[800px] xl:max-w-[1104px] mx-auto flex flex-col items-center gap-8 lg:gap-14 ${className}`}
+      className={`max-w-[375px] lg:max-w-[800px]  xl:max-w-[1104px] mx-auto flex flex-col items-center gap-8 lg:gap-14 ${className}`}
     >
       <h2
         className={`font-bold text-[36px] leading-[40px] text-center lg:text-[48px] lg:leading-[56px] ${titleColor}`}
@@ -25,7 +25,7 @@ export default function ReviewsList({
       </h2>
 
       <div className="max-w-full relative">
-        <div className="relative max-w-full [--shadow-pad:16px] -mx-[var(--shadow-pad)]">
+        <div>
           <Swiper
             modules={[Navigation]}
             spaceBetween={16}
@@ -42,7 +42,7 @@ export default function ReviewsList({
           >
             {reviews.map((r, i) => (
               <SwiperSlide key={i} className="!flex !justify-center ">
-                <div className="max-w-[343px] lg:max-w-[352px] h-[216px] bg-white rounded-[4px] shadow-[0_4px_24px_rgba(20,25,26,0.12)] p-8 flex flex-col justify-center gap-4">
+                <div className="max-w-[343px] w-full lg:max-w-[352px] h-[216px] bg-white rounded-[4px] shadow-[0_4px_24px_rgba(20,25,26,0.12)] p-8 flex flex-col justify-center gap-4">
                   <div className="flex items-center justify-between max-w-full">
                     <div className="flex items-center gap-4">
                       <Image

@@ -45,7 +45,7 @@ export async function generateMetadata({ params }) {
 
 export default async function HomePage(props) {
   const { locale } = await props.params;
-  const t = await getTranslations({ locale, namespace: "HomePage" });
+  const t = await getTranslations({ locale, namespace: "Home_page" });
   const page = await getPage("home", locale);
   const services = await getCollection("services", locale);
   const reviews = await getCollection("reviews", locale);
@@ -159,8 +159,8 @@ export default async function HomePage(props) {
           </div>
         </div>
       </section>
-      <ServicesList services={services} />
-      <section className="flex justify-center items-end w-full bg-[#0B63E5]  -mt-[110px] lg:-mt-[144px] xl:-mt-[208px] h-[582px] lg:h-[672px] xl:h-[768px]">
+      <ServicesList services={services} />+{" "}
+      <section className="flex justify-center items-end w-full bg-[#0B63E5] -mt-[110px] lg:-mt-[144px] xl:-mt-[208px] h-[582px] lg:h-[672px] xl:h-[768px] overflow-x-clip">
         <div className="mb-12">
           <ReviewsList reviews={reviews} />
         </div>
@@ -168,7 +168,6 @@ export default async function HomePage(props) {
       <section className="mt-12 xl:mt-32">
         <ClientsSlider clients={clients} />
       </section>
-
       <section className="mt-24 xl:mt-32">
         <TeamList team={team} locale={locale} />
       </section>
@@ -189,7 +188,6 @@ export default async function HomePage(props) {
           sizes="(min-width:1024px) 800px, 0px"
         />
       </section>
-
       <section className=" w-full mt-12 xl:mt-32">
         <ContactForm />
       </section>
