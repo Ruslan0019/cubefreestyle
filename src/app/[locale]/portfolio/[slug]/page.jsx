@@ -8,6 +8,23 @@ import ReviewsList from "@/components/ReviewsList/ReviewsList";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import { getCollection } from "@/../../lib/content";
 
+export const revalidate = false;
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const locales = ["uk", "ru"];
+  const allParams = [];
+
+  for (const locale of locales) {
+    const { totalPages } = await getPaginatedEvents(locale, 1);
+    for (let i = 2; i <= totalPages; i++) {
+      allParams.push({ locale, slug: `page-${i}` });
+    }
+  }
+
+  return allParams;
+}
+
 export default async function PortfolioSlugPage({ params }) {
   const locale = await getLocale();
   const reviews = await getCollection("reviews", locale);

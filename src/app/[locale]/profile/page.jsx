@@ -1,5 +1,3 @@
-import React from "react";
-
 export const revalidate = false;
 export const dynamic = "force-static";
 export function generateStaticParams() {

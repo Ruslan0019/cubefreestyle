@@ -8,6 +8,13 @@ import ClientsSlider from "@/components/ClientsSlider/ClientsSlider";
 import GallerySection from "@/components/GallerySection/GallerySection";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
+export const revalidate = false;
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  return [{ locale: "uk" }, { locale: "ru" }];
+}
+
 export default async function About() {
   const locale = await getLocale();
   const about = await getPage("about", locale);

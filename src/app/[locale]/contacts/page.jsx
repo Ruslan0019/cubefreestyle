@@ -8,6 +8,11 @@ export const metadata = {
   title: "Контакти | CUBE Freestyle",
   description: "Замовлення шоу футбольного фристайлу",
 };
+export const revalidate = false;
+export const dynamic = "force-static";
+export function generateStaticParams() {
+  return [{ locale: "uk" }, { locale: "ru" }];
+}
 
 export default async function ContactsPage() {
   const locale = await getLocale();

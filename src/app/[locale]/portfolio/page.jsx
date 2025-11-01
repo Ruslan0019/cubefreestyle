@@ -8,6 +8,12 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import Pagination from "@/components/Pagination/Pagination";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
+export const revalidate = false;
+export const dynamic = "force-static";
+export function generateStaticParams() {
+  return [{ locale: "uk" }, { locale: "ru" }];
+}
+
 export default async function PortfolioPage() {
   const locale = await getLocale();
   const reviews = await getCollection("reviews", locale);
