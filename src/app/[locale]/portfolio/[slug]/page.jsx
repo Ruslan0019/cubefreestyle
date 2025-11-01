@@ -58,6 +58,7 @@ export default async function PortfolioSlugPage({ params }) {
                 <Image
                   width={343}
                   height={349}
+                  priority
                   src={event.cover}
                   alt={event.title || "Portfolio event"}
                   className="w-full h-[349px] lg:h-[325px] xl:h-[358px] object-cover rounded-t-sm"

@@ -9,6 +9,7 @@ import ReviewsList from "@/components/ReviewsList/ReviewsList";
 import ClientsSlider from "@/components/ClientsSlider/ClientsSlider";
 import TeamList from "@/components/TeamList/TeamList";
 import ContactForm from "@/components/ContactForm/ContactForm";
+import HydratedVideo from "@/components/HydratedVideo/HydratedVideo";
 
 export const revalidate = false;
 export const dynamic = "force-static";
@@ -53,30 +54,30 @@ export default async function HomePage(props) {
   const team = await getCollection("team", locale);
   return (
     <div className="flex flex-col items-center justify-center">
-      {/* hero section */}
-      <section className="relative justify-center lg:justify-start w-full h-[700px] lg:h-[680px] xl:h-[780px] flex items-center">
-        <video
-          poster="/uploads/poster.webp"
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          src="/videos/freestyle.webm"
-          autoPlay
-          fetchPriority="high"
-          loop
-          preload="auto"
-          suppressHydrationWarning
-          muted
-          aria-hidden="true"
-          playsInline
+      <section className="relative w-full h-[700px] lg:h-[680px] xl:h-[780px] flex items-center justify-center lg:justify-start">
+        {/* 1) Постер (LCP) — низ стека */}
+        <Image
+          src="/uploads/poster.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover z-0"
         />
 
-        <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
+        {/* 4) Видео — тоже низ стека */}
+        <HydratedVideo />
 
-        <div className="w-full max-w-[375px] lg:max-w-[1024px] xl:max-w-[1440px] px-6 lg:px-10 xl:px-[160px] mx-auto">
-          <div className="relative text-center lg:text-left z-10 text-white w-full max-w-[327px] lg:max-w-[566px]">
+        {/* 2) Затемняющий оверлей — НАД видео */}
+        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
+
+        {/* 3) Контент — самый верх */}
+        <div className="relative z-20 w-full max-w-[375px] lg:max-w-[1024px] xl:max-w-[1440px] px-6 lg:px-10 xl:px-[160px] mx-auto">
+          <div className="text-center lg:text-left text-white w-full max-w-[327px] lg:max-w-[566px]">
             <h1 className="text-4xl lg:text-5xl font-bold mb-10">
               {page.hero_title}
             </h1>
-            <button className="bg-primary hover:bg-primary-hover px-8 py-4 rounded-sm text-lg font-semibold cursor-pointer transition-transform duration-200 hover:scale-105">
+            <button className="bg-primary hover:bg-primary-hover px-8 py-4 rounded-sm text-lg font-semibold transition-transform duration-200 hover:scale-105">
               {page.hero_button}
             </button>
           </div>
@@ -93,14 +94,15 @@ export default async function HomePage(props) {
             <ReactMarkdown>{page.about_description}</ReactMarkdown>
           </div>
         </div>
-        <div className="w-full max-w-[422px] lg:w-[422px] lg:h-[486px] xl:w-[422px] xl:h-[486px]">
+        <div className="w-full max-w-[343px] lg:max-w-[422px] xl:max-w-[496px]">
           <Image
-            width={343}
-            height={395}
-            src="/uploads/rectangle-90.png"
+            src="/uploads/rectangle-90.webp"
             alt="Футбольний м’яч"
+            width={496}
+            height={486}
             className="rounded-lg w-full h-auto"
-            preload="true"
+            sizes="(min-width: 1441px) 496px, (min-width: 1025px) 423px, 343px"
+            priority
           />
         </div>
       </section>
@@ -182,16 +184,14 @@ export default async function HomePage(props) {
           src="/uploads/mapMobile.svg"
           alt="Карта"
           fill
-          quality={100}
+          loading="lazy"
           className="lg:hidden object-contain"
           sizes="(min-width:1024px) 0px, 376px"
-          priority
         />
         <Image
           src="/uploads/mapDesktop.svg"
           alt="Карта"
           fill
-          quality={100}
           className="hidden lg:block object-contain"
           sizes="(min-width:1024px) 800px, 0px"
         />

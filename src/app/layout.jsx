@@ -39,6 +39,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="uk">
+      <head>
+        <link
+          rel="preconnect"
+          href="https://static.cloudflareinsights.com"
+          crossOrigin=""
+        />
+
+        <link
+          rel="preconnect"
+          href="https://cubefreestyle.com.ua"
+          crossOrigin=""
+        />
+      </head>
       <body className="flex flex-col min-h-screen">{children}</body>
     </html>
   );

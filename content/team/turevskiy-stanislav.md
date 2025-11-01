@@ -4,9 +4,11 @@ uk:
     - text: •  суддя чемпіонату світу Super Ball 2014 року, м. Ліберець (Чехія).
     - text: •  учасник чемпіонату світу Super Ball 2013, м. Прага (Чехія).
     - text: •  учасник чемпіонату світу Super Ball 2012, м. Прага (Чехія).
-    - text: •  суддя регіонального відбору всеукраїнської кваліфікації чемпіонату
+    - text:
+        •  суддя регіонального відбору всеукраїнської кваліфікації чемпіонату
         світу Red Bull Street Style 2012, м. Київ.
-  bio: Головний організатор офіційного чемпіонату України з футбольного фрістайлу.
+  bio:
+    Головний організатор офіційного чемпіонату України з футбольного фрістайлу.
     Брав участь в організації всеукраїнських кваліфікацій чемпіонату світу Red
     Bull Street Style. Як фристайлер має величезний досвід показових виступів як
     на території України так і за кордоном.
@@ -16,12 +18,12 @@ uk:
   thumbnail: /uploads/turevskiy-stanislav.png
   photo: /uploads/Turevskyi-Stanislav.webp
   gallery:
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
   status: Alive
   role: Фрістайлер
   section_title: Про фристайлера
@@ -40,12 +42,12 @@ ru:
   thumbnail: /uploads/turevskiy-stanislav.png
   photo: /uploads/Turevskyi-Stanislav.webp
   gallery:
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
-    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
+    - image: /uploads/rectangle-90.webp
   status: Alive
   role: Фристайлер
   section_title: " О фристайлере"

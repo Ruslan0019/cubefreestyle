@@ -19,7 +19,8 @@ export default function ServicesList({ services = [] }) {
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 1024px) 220px, (max-width: 1440px) 320px, 454px"
                 />
                 <div className="absolute bottom-0 left-0 w-full h-[138px] bg-gradient-to-b from-transparent to-black/90" />
                 <div className="absolute bottom-3 left-3 right-3 text-white">
@@ -47,7 +48,8 @@ export default function ServicesList({ services = [] }) {
               src={service.image}
               alt={service.title}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              className="object-cover"
+              sizes="(max-width: 1024px) 220px, 320px"
             />
             <div className="absolute bottom-0 left-0 w-full h-[160px] xl:h-[226px] bg-gradient-to-b from-transparent to-black/90" />
             <div className="absolute bottom-6 xl:bottom-[32px] left-6 xl:left-[32px] right-6 xl:right-[32px] text-white">

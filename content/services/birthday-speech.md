@@ -1,7 +1,7 @@
 ---
 uk:
   body: >-
-    
+
     Футбольний фристайл – це видовищні трюки з м’ячем у поєднанні з музикою, акробатикою та драйвом. Це не футбол у класичному розумінні, а справжнє мистецтво контролю.
 
 
@@ -12,9 +12,9 @@ uk:
   slug: ditiachiy-den-narodzhennia
   date: 21.06.2025
   gallery:
-    - /uploads/rectangle-90.png
-    - /uploads/rectangle-90.png
-    - /uploads/rectangle-90.png
+    - /uploads/rectangle-90.webp
+    - /uploads/rectangle-90.webp
+    - /uploads/rectangle-90.webp
   title_seo: Шоу футбольного фристайлу на дитячий День Народження в Дніпрі та
     Україні — Команда CUBE
   title: Шоу футбольного фристайлу на дитячий День Народження
@@ -23,10 +23,10 @@ uk:
     дитяче свято від команди професійних фрістайлерів з команди "Куб" у Дніпрі
     та інших містах України. Залишіть заявку зараз!
   video: /uploads/freestyle.webm
-  image: /uploads/rectangle-90.png
+  image: /uploads/rectangle-90.webp
 ru:
   body: >-
-    
+
 
 
     Футбольный фристайл — это зрелищные трюки с мячом в сочетании с музыкой, акробатикой и драйвом. Это не футбол в классическом понимании, а настоящее искусство контроля.
@@ -39,16 +39,17 @@ ru:
   slug: ditiachiy-den-narodzhennia
   date: 21.06.2025
   gallery:
-    - /uploads/rectangle-90.png
-    - /uploads/rectangle-90.png
-    - /uploads/rectangle-90.png
+    - /uploads/rectangle-90.webp
+    - /uploads/rectangle-90.webp
+    - /uploads/rectangle-90.webp
   title_seo: "Шоу футбольного фристайла на детский День Рождения в Днепре и
     Украине — Команда CUBE "
   title: Шоу футбольного фристайла на детский День Рождения
   short_description: Шоу футбольного фристайла на детский День Рождения
-  description_seo: Заказывайте выступление с футбольного фристайла и мастер-класс
+  description_seo:
+    Заказывайте выступление с футбольного фристайла и мастер-класс
     на детский праздник от команды профессиональный фристайлеров из команды
     "Куб" в Днепре и других городах Украины. Оставьте заявку сейчас!
   video: /uploads/freestyle.webm
-  image: /uploads/rectangle-90.png
+  image: /uploads/rectangle-90.webp
 ---
