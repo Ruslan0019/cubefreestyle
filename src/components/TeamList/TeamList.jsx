@@ -34,6 +34,8 @@ export default async function TeamList({ team = [], locale = "uk" }) {
                 src={member.thumbnail}
                 alt={member.name}
                 fill
+                preload="true"
+                priority
                 className="object-cover"
               />
 

@@ -34,6 +34,8 @@ export default async function TeamMemberPage({ params }) {
             alt={member.name}
             width={600}
             height={800}
+            priority
+            preload="true"
             className="rounded-full w-full object-cover"
           />
         </div>
