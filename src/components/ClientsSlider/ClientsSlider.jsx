@@ -28,6 +28,7 @@ export default function ClientsSlider({ clients }) {
               alt={client.alt}
               width={120}
               height={60}
+              priority
               className="object-contain"
             />
           </SwiperSlide>
