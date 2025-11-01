@@ -3,6 +3,23 @@ import { getCollection } from "../../../../../lib/content";
 import GallerySection from "@/components/GallerySection/GallerySection";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
+export const revalidate = false;
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const locales = ["uk", "ru"];
+  const allParams = [];
+
+  for (const locale of locales) {
+    const team = await getCollection("team", locale);
+    team.forEach((m) => {
+      allParams.push({ slug: m.slug, locale });
+    });
+  }
+
+  return allParams;
+}
+
 export default async function TeamMemberPage({ params }) {
   const { slug, locale } = await params;
   const team = await getCollection("team", locale);
@@ -60,11 +77,4 @@ export default async function TeamMemberPage({ params }) {
       </div>
     </section>
   );
-}
-
-export async function generateStaticParams() {
-  const team = await getCollection("team", "uk");
-  return team.map((m) => ({
-    slug: m.slug,
-  }));
 }

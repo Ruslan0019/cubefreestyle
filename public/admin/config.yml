@@ -99,7 +99,12 @@ collections:
               widget: "string",
               i18n: true,
             }
-          - { name: "", label: "", widget: "string", i18n: true }
+          - {
+              name: "serice_title",
+              label: "serice_title",
+              widget: "string",
+              i18n: true,
+            }
       - name: "about"
         label: "Про команду CUBE"
         file: "content/pages/about.md"
@@ -343,19 +348,6 @@ collections:
               i18n: true,
             }
 
-      - name: "service"
-        label: "Послуга"
-        file: "content/pages/service.md"
-        i18n: true
-        fields:
-          - { name: "title", label: "Title", widget: "string", i18n: true }
-          - {
-              name: "content",
-              label: "Content",
-              widget: "markdown",
-              i18n: true,
-            }
-
   - name: "services"
     label: "Послуги"
     folder: "content/services"
@@ -363,6 +355,13 @@ collections:
     create: true
     slug: "{{fields.slug}}"
     fields:
+      - { name: "title_seo", label: "Title Seo", widget: "string", i18n: true }
+      - {
+          name: "description_seo",
+          label: "Description Seo",
+          widget: "string",
+          i18n: true,
+        }
       - { name: "title", label: "Назва послуги", widget: "string", i18n: true }
       - {
           name: "short_description",

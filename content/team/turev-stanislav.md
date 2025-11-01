@@ -32,6 +32,13 @@ ru:
   main_photo: /uploads/Turevskyi-Stanislav.webp
   thumbnail: /uploads/turevskiy-stanislav.png
   photo: /uploads/Turevskyi-Stanislav.webp
+  gallery:
+    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.png
+    - image: /uploads/rectangle-90.png
   status: Alive
   role: Фристайлер
   section_title: " О фристайлере"

@@ -159,7 +159,10 @@ export default async function HomePage(props) {
           </div>
         </div>
       </section>
-      <ServicesList services={services} />+{" "}
+      <h2 className="text-3xl lg:text-[36px] xl:text-[48px] font-bold mb-8 text-center text-dark">
+        {t("service_title")}
+      </h2>
+      <ServicesList services={services} />
       <section className="flex justify-center items-end w-full bg-[#0B63E5] -mt-[110px] lg:-mt-[144px] xl:-mt-[208px] h-[582px] lg:h-[672px] xl:h-[768px] overflow-x-clip">
         <div className="mb-12">
           <ReviewsList reviews={reviews} />
@@ -171,25 +174,30 @@ export default async function HomePage(props) {
       <section className="mt-24 xl:mt-32">
         <TeamList team={team} locale={locale} />
       </section>
-      <section className=" mt-12 xl:mt-32 mx-auto w-full max-w-[376px] lg:max-w-[800px] h-[662px] lg:h-[644px] px-6 lg:px-10 xl:px-[160px] aspect-[376/500] lg:aspect-[800/450] relative">
+      <h2 className="w-full max-w-[340px] lg:max-w-full text-4xl lg:text-5xl font-bold text-center text-[#001F54]  mt-12 xl:mt-32">
+        {t("map_title")}
+      </h2>
+      <section className=" mx-auto w-full max-w-[376px] lg:max-w-[800px] h-[662px] lg:h-[644px] px-6 lg:px-10 xl:px-[160px] aspect-[376/500] lg:aspect-[800/450] relative">
         <Image
-          src="/uploads/mapMobile.png"
+          src="/uploads/mapMobile.svg"
           alt="Карта"
           fill
+          quality={100}
           className="lg:hidden object-contain"
           sizes="(min-width:1024px) 0px, 376px"
           priority
         />
         <Image
-          src="/uploads/mapDesktop.webp"
+          src="/uploads/mapDesktop.svg"
           alt="Карта"
           fill
+          quality={100}
           className="hidden lg:block object-contain"
           sizes="(min-width:1024px) 800px, 0px"
         />
       </section>
       <section className=" w-full mt-12 xl:mt-32">
-        <ContactForm />
+        <ContactForm locale={locale} />
       </section>
     </div>
   );
