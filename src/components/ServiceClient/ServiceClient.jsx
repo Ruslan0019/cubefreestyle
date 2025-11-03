@@ -59,7 +59,7 @@ export default async function ServiceClient({ serviceData }) {
           arrowColor="#838E9E"
         />
       </section>
-      <ContactForm />
+      <ContactForm locale={locale} />
     </section>
   );
 }

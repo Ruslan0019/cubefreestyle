@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { getPage } from "../../../lib/md";
-import React from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import ServicesList from "@/components/ServicesList/ServicesList";
@@ -21,10 +20,19 @@ export async function generateMetadata({ params }) {
   const page = await getPage("home", locale);
 
   return {
+    alternates: {
+      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}`,
+      languages: {
+        uk: "/",
+        ru: "/ru/",
+        "x-default": `https://cubefreestyle.com.ua`,
+      },
+    },
     title: page.title_seo,
     description: page.description_seo,
     openGraph: {
       type: "website",
+      locale: locale,
       siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
@@ -36,10 +44,7 @@ export async function generateMetadata({ params }) {
           alt: "Cube Freestyle Show",
         },
       ],
-      url:
-        locale === "ru"
-          ? "https://cubefreestyle.com.ua/ru/"
-          : "https://cubefreestyle.com.ua/",
+      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}`,
     },
   };
 }
@@ -94,15 +99,15 @@ export default async function HomePage(props) {
             <ReactMarkdown>{page.about_description}</ReactMarkdown>
           </div>
         </div>
-        <div className="w-full max-w-[343px] lg:max-w-[422px] xl:max-w-[496px]">
+        <div className="relative w-full max-w-[343px] lg:max-w-[422px] xl:max-w-[496px] aspect-[496/486]">
           <Image
             src="/uploads/rectangle-90.webp"
             alt="Футбольний м’яч"
-            width={496}
-            height={486}
-            className="rounded-lg w-full h-auto"
-            sizes="(min-width: 1441px) 496px, (min-width: 1025px) 423px, 343px"
-            priority
+            fill
+            className="rounded-lg object-cover"
+            sizes="(min-width:1441px) 496px, (min-width:1025px) 422px, 343px"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </section>
@@ -192,6 +197,7 @@ export default async function HomePage(props) {
           src="/uploads/mapDesktop.svg"
           alt="Карта"
           fill
+          loading="lazy"
           className="hidden lg:block object-contain"
           sizes="(min-width:1024px) 800px, 0px"
         />

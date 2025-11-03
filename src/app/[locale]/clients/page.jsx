@@ -11,9 +11,41 @@ export const dynamic = "force-static";
 export function generateStaticParams() {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const page = await getPage("clients", locale);
 
-export default async function Clients() {
-  const locale = await getLocale();
+  return {
+    alternates: {
+      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}clients`,
+      languages: {
+        uk: "/",
+        ru: "/ru/",
+        "x-default": `https://cubefreestyle.com.ua`,
+      },
+    },
+    title: page.title_seo,
+    description: page.description_seo,
+    openGraph: {
+      type: "website",
+      locale: locale,
+      siteName: "Cube Freestyle",
+      title: page.title_seo,
+      description: page.description_seo,
+      images: [
+        {
+          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Cube Freestyle Show",
+        },
+      ],
+      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}clients`,
+    },
+  };
+}
+export default async function Clients({ params }) {
+  const { locale } = await params;
   const clientsPage = await getPage("clients", locale);
   const clientsList = await getClients();
 
@@ -45,7 +77,7 @@ export default async function Clients() {
             </li>
           ))}
         </ul>
-        <ContactForm />
+        <ContactForm locale={locale} />
       </section>
       <div className=" px-4 lg:px-10 xl:px-40 my-4 lg:my-6">
         <Breadcrumbs />

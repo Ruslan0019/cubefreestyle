@@ -15,6 +15,40 @@ export async function generateStaticParams() {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
 
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const page = await getPage("about", locale);
+
+  return {
+    alternates: {
+      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}about`,
+      languages: {
+        uk: "/",
+        ru: "/ru/",
+        "x-default": `https://cubefreestyle.com.ua`,
+      },
+    },
+    title: page.title_seo,
+    description: page.description_seo,
+    openGraph: {
+      type: "website",
+      locale: locale,
+      siteName: "Cube Freestyle",
+      title: page.title_seo,
+      description: page.description_seo,
+      images: [
+        {
+          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Cube Freestyle Show",
+        },
+      ],
+      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}about`,
+    },
+  };
+}
+
 export default async function About() {
   const locale = await getLocale();
   const about = await getPage("about", locale);
@@ -47,7 +81,7 @@ export default async function About() {
         <section className="my-24 xl:my-32">
           <GallerySection images={images} />
         </section>
-        <ContactForm />
+        <ContactForm locale={locale} />
       </section>
       <div className=" px-4 lg:px-10 xl:px-40 my-4 lg:my-6">
         <Breadcrumbs />

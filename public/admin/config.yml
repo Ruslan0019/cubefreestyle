@@ -106,10 +106,22 @@ collections:
               i18n: true,
             }
       - name: "about"
-        label: "Про команду CUBE"
+        label: "Сторінка про нас"
         file: "content/pages/about.md"
         i18n: true
         fields:
+          - {
+              name: "title_seo",
+              label: "Title_Seo",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "description_seo",
+              label: "Description_Seo",
+              widget: "string",
+              i18n: true,
+            }
           - { name: "title", label: "Заголовок", widget: "string", i18n: true }
           - {
               name: "subtitle",
@@ -123,9 +135,44 @@ collections:
               widget: "markdown",
               i18n: true,
             }
-      - name: "terms"
-        label: "Terms of Use"
-        file: "content/pages/terms.md"
+      - name: "portfolio_page"
+        label: "Сторінка портфоліо"
+        file: "content/pages/portfolio_page.md"
+        i18n: true
+        fields:
+          - { name: "title", label: "Заголовок", widget: "string", i18n: true }
+          - {
+              name: "title_seo",
+              label: "Title_Seo",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "description_seo",
+              label: "Description_Seo",
+              widget: "string",
+              i18n: true,
+            }
+      - name: "terms_of_use"
+        label: "Правила використання сайту"
+        file: "content/pages/terms_of_use.md"
+        i18n: true
+        fields:
+          - {
+              name: "title_seo",
+              label: "Title Seo",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "description_seo",
+              label: "Description Seo",
+              widget: "string",
+              i18n: true,
+            }
+      - name: "privacy_policy"
+        label: "Політика конфіденційності"
+        file: "content/pages/privacy_policy.md"
         i18n: true
         fields:
           - {
@@ -305,17 +352,6 @@ collections:
                   default: "Відправити",
                   i18n: true,
                 }
-      - name: "reviews_page"
-        label: "Reviews Page"
-        file: "content/pages/reviews.md"
-        i18n: true
-        fields:
-          - {
-              name: "section_title",
-              label: "Заголовок секції",
-              widget: "string",
-              i18n: true,
-            }
 
       - name: "clients"
         label: "Наші клієнти"
@@ -326,24 +362,6 @@ collections:
           - {
               name: "subtitle",
               label: "Підзаголовок / короткий опис під заголовком",
-              widget: "string",
-              i18n: true,
-            }
-
-      - name: "privacy"
-        label: "Privacy Policy"
-        file: "content/pages/privacy.md"
-        i18n: true
-        fields:
-          - {
-              name: "title_seo",
-              label: "Title Seo",
-              widget: "string",
-              i18n: true,
-            }
-          - {
-              name: "description",
-              label: "Description Seo",
               widget: "string",
               i18n: true,
             }

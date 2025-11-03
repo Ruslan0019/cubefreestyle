@@ -1,7 +1,41 @@
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
+import { getPage } from "../../../../lib/md";
 
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const page = await getPage("privacy_policy", locale);
+
+  return {
+    alternates: {
+      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}privacy-policy`,
+      languages: {
+        uk: "/",
+        ru: "/ru/",
+        "x-default": `https://cubefreestyle.com.ua`,
+      },
+    },
+    title: page.title_seo,
+    description: page.description_seo,
+    openGraph: {
+      type: "website",
+      locale: locale,
+      siteName: "Cube Freestyle",
+      title: page.title_seo,
+      description: page.description_seo,
+      images: [
+        {
+          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Cube Freestyle Show",
+        },
+      ],
+      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}privacy-policy`,
+    },
+  };
+}
 export const revalidate = false;
 export const dynamic = "force-static";
 export function generateStaticParams() {

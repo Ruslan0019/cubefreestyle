@@ -1,24 +1,50 @@
 import HeroArc from "@/components/HeroArc/HeroArc";
-import { getLocale } from "next-intl/server";
 import { getPage } from "../../../../lib/md";
-import { getCollection } from "../../../../lib/content";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
-export const metadata = {
-  title: "Контакти | CUBE Freestyle",
-  description: "Замовлення шоу футбольного фристайлу",
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const page = await getPage("contacts", locale);
+
+  return {
+    alternates: {
+      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}contacts`,
+      languages: {
+        uk: "/",
+        ru: "/ru/",
+        "x-default": `https://cubefreestyle.com.ua`,
+      },
+    },
+    title: page.title_seo,
+    description: page.description_seo,
+    openGraph: {
+      type: "website",
+      locale: locale,
+      siteName: "Cube Freestyle",
+      title: page.title_seo,
+      description: page.description_seo,
+      images: [
+        {
+          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Cube Freestyle Show",
+        },
+      ],
+      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}contacts`,
+    },
+  };
+}
 export const revalidate = false;
 export const dynamic = "force-static";
 export function generateStaticParams() {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
 
-export default async function ContactsPage() {
-  const locale = await getLocale();
+export default async function ContactsPage({ params }) {
+  const { locale } = await params;
   const contactsPage = await getPage("contacts", locale);
-  const gallery = await getCollection("gallery");
-  const images = gallery[0]?.images || [];
+
   return (
     <>
       <section className="relative w-full bg-white">

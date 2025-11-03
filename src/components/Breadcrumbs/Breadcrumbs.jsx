@@ -1,10 +1,14 @@
 "use client";
+import { useLocale } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "use-intl";
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
+  const locale = useLocale();
+  console.log(locale);
+
   const t = useTranslations("Breadcrumbs");
 
   const segments = pathname
@@ -27,6 +31,28 @@ export default function Breadcrumbs() {
           {t(mainSection) || mainSection}
         </span>
       </span>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: t("home"),
+                item: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: t(mainSection) || mainSection,
+              },
+            ],
+          }),
+        }}
+      />
     </nav>
   );
 }
