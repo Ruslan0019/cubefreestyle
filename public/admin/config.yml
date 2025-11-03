@@ -447,6 +447,7 @@ collections:
         name: "media"
         widget: "list"
         max: 10
+        i18n: true
         fields:
           - {
               label: "Тип",
@@ -454,8 +455,9 @@ collections:
               widget: "select",
               options: ["image", "video"],
               default: "image",
+              i18n: true,
             }
-          - { label: "Файл", name: "file", widget: "file" }
+          - { label: "Файл", name: "file", widget: "file", i18n: true }
           - {
               label: "Alt / Підпис (для зображень)",
               name: "alt",
@@ -468,8 +470,15 @@ collections:
               name: "poster",
               widget: "image",
               required: false,
+              i18n: true,
             }
-      - { label: "Теги", name: "tags", widget: "list", required: false }
+      - {
+          label: "Теги",
+          name: "tags",
+          widget: "list",
+          required: false,
+          i18n: true,
+        }
 
   - name: "reviews"
     label: "Відгуки"
