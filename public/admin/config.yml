@@ -13,11 +13,11 @@ i18n:
 
 collections:
   - name: "pages"
-    label: "Pages"
+    label: "Сторінки"
     i18n: true
     files:
       - name: "home"
-        label: "Home Page"
+        label: "Сторінка головна"
         file: "content/pages/home.md"
         i18n: true
         fields:
@@ -153,9 +153,9 @@ collections:
               widget: "string",
               i18n: true,
             }
-      - name: "terms_of_use"
-        label: "Правила використання сайту"
-        file: "content/pages/terms_of_use.md"
+      - name: "clients"
+        label: "Сторінка клієнти"
+        file: "content/pages/clients.md"
         i18n: true
         fields:
           - {
@@ -166,29 +166,20 @@ collections:
             }
           - {
               name: "description_seo",
-              label: "Description Seo",
+              label: "Description seo",
               widget: "string",
               i18n: true,
             }
-      - name: "privacy_policy"
-        label: "Політика конфіденційності"
-        file: "content/pages/privacy_policy.md"
-        i18n: true
-        fields:
+          - { name: "title", label: "Заголовок", widget: "string", i18n: true }
           - {
-              name: "title_seo",
-              label: "Title Seo",
+              name: "subtitle",
+              label: "Підзаголовок / короткий опис під заголовком",
               widget: "string",
               i18n: true,
             }
-          - {
-              name: "description_seo",
-              label: "Description Seo",
-              widget: "string",
-              i18n: true,
-            }
+
       - name: "contacts"
-        label: "Контакти"
+        label: "Сторінка контакти"
         file: "content/pages/contacts.md"
         i18n: true
         fields:
@@ -352,16 +343,37 @@ collections:
                   default: "Відправити",
                   i18n: true,
                 }
-
-      - name: "clients"
-        label: "Наші клієнти"
-        file: "content/pages/clients.md"
+      - name: "terms_of_use"
+        label: "Сторінка правила користування"
+        file: "content/pages/terms_of_use.md"
         i18n: true
         fields:
-          - { name: "title", label: "Заголовок", widget: "string", i18n: true }
           - {
-              name: "subtitle",
-              label: "Підзаголовок / короткий опис під заголовком",
+              name: "title_seo",
+              label: "Title Seo",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "description_seo",
+              label: "Description Seo",
+              widget: "string",
+              i18n: true,
+            }
+      - name: "privacy_policy"
+        label: "Сторінка політика конфіденційності"
+        file: "content/pages/privacy_policy.md"
+        i18n: true
+        fields:
+          - {
+              name: "title_seo",
+              label: "Title Seo",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "description_seo",
+              label: "Description Seo",
               widget: "string",
               i18n: true,
             }
@@ -446,7 +458,6 @@ collections:
       - label: "Медіа (до 10)"
         name: "media"
         widget: "list"
-        max: 10
         i18n: true
         fields:
           - {
@@ -565,7 +576,7 @@ collections:
             widget: "image"
 
   - name: "gallery"
-    label: "Gallery"
+    label: "Галерея"
     folder: "content/gallery"
     create: false
     fields:

@@ -7,7 +7,6 @@ import { useTranslations } from "use-intl";
 export default function Breadcrumbs() {
   const pathname = usePathname();
   const locale = useLocale();
-  console.log(locale);
 
   const t = useTranslations("Breadcrumbs");
 

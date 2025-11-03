@@ -4,8 +4,9 @@ import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import LangSwitcher from "../LangSwitcher/LangSwitcher";
 import { useTranslations } from "next-intl";
+import ServicesDropdown from "../ServicesDropdownHeader/ServicesDropdownHeader";
 
-export default function Header() {
+export default function Header({ services = [], locale }) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Navigations");
 
@@ -25,7 +26,7 @@ export default function Header() {
           </Link>
 
           {/* ДЕСКТОП МЕНЮ */}
-          <nav className="flex-1 items-center justify-center space-x-6 flex ">
+          <nav className="flex-1 items-center justify-center space-x-6 flex">
             <Link
               href="/about"
               className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
@@ -39,6 +40,10 @@ export default function Header() {
             >
               {t("portfolio")}
             </Link>
+
+            {/* ВЫПАДАЮЩИЙ СПИСОК УСЛУГ — ВОТ ЭТОГО НЕ ХВАТАЛО */}
+            <ServicesDropdown services={services} locale={locale} />
+
             <Link
               href="/clients"
               className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
@@ -181,6 +186,10 @@ export default function Header() {
           >
             {t("clients")}
           </Link>
+
+          {/* Выпадающий список услуг и в мобилке тоже */}
+          <ServicesDropdown services={services} locale={locale} />
+
           <Link
             href="/contacts"
             className="block text-gray-700 hover:text-primary"

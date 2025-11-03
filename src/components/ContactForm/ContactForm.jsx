@@ -1,82 +1,18 @@
-import { getTranslations } from "next-intl/server";
+// components/ContactForm/ContactForm.jsx
+import { getLocale } from "next-intl/server";
+import { getCollection } from "@/../../lib/content";
+import ContactFormClient from "./ContactFormClient";
 
-export default async function ContactForm({ services = [], locale }) {
-  const t = await getTranslations({ locale, namespace: "ContactForm" });
-  return (
-    <section
-      className="relative flex flex-col items-center justify-center 
-  py-12 lg:py-16 px-4 lg:px-[131px] xl:px-[339px] w-full 
-  bg-[url('/BackgroundForm.svg')] bg-cover bg-center bg-no-repeat"
-    >
-      <form
-        method="post"
-        action="/api/contact"
-        className="flex flex-col gap-6 w-full max-w-[343px] lg:max-w-[762px]"
-      >
-        <h2 className="m-auto text-4xl text-center font-bold leading-10">
-          {t("title")}
-        </h2>
+export default async function ContactForm() {
+  const locale = await getLocale();
 
-        <div className="gap-6 flex flex-col lg:flex-row">
-          <label className="flex flex-col text-left flex-1">
-            <span className="block text-white/90 mb-1">{t("name_label")}</span>
-            <input
-              name="name"
-              required
-              minLength={2}
-              placeholder={t("name_placeholder")}
-              className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
-            />
-          </label>
+  const servicesData = await getCollection("services", locale);
 
-          <label className="flex flex-col text-left flex-1">
-            <span className="block text-white/90 mb-1">{t("phone_label")}</span>
-            <input
-              name="phone"
-              required
-              inputMode="tel"
-              placeholder={t("phone_placeholder")}
-              pattern="^\\+?\\d[\\d\\s()-]{7,}$"
-              className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
-            />
-          </label>
-        </div>
+  const services = servicesData.map((service) => ({
+    value: service.title,
+    label: service.title,
+  }));
 
-        <label className="flex flex-col text-left">
-          <span className="block text-white/90 mb-1">{t("service_label")}</span>
-          <select
-            name="service"
-            required
-            className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
-          >
-            <option value="">Оберіть послугу</option>
-            {services.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="flex flex-col text-left">
-          <span className="block text-white/90 mb-1">{t("massage_label")}</span>
-          <textarea
-            name="message"
-            rows="4"
-            placeholder={t("massage_placeholder")}
-            className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2 resize-none"
-          />
-        </label>
-
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="rounded-md bg-white text-blue-700 font-medium px-5 py-2 shadow hover:shadow-md transition"
-          >
-            {t("batton")}
-          </button>
-        </div>
-      </form>
-    </section>
-  );
+  // просто передаём данные в клиентский компонент
+  return <ContactFormClient services={services} />;
 }

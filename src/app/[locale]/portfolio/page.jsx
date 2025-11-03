@@ -60,7 +60,6 @@ export default async function PortfolioPage({ params }) {
   const reviews = await getCollection("reviews", locale);
   const portfolio = await getPage("portfolio_page", locale);
   const { items: events, totalPages } = await getPaginatedEvents(locale, 1);
-  console.log(events);
 
   return (
     <>

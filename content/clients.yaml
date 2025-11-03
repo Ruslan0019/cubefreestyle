@@ -1,8 +1,8 @@
 clients:
-  - image: /uploads/image12.png
-    alt: Qatar
   - image: /uploads/image13.png
     alt: jnicef
+  - image: /uploads/image12.png
+    alt: Qatar
   - image: /uploads/image14.png
     alt: pariMatch
   - image: /uploads/image12.png

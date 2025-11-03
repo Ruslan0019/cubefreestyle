@@ -7,7 +7,6 @@ import EventModal from "../EventModal/EventModal";
 export default function EventsGrid({ events = [], locale = "uk" }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  console.log(events);
 
   const openModal = useCallback((ev) => {
     setSelected(ev);

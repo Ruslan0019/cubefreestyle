@@ -1,16 +1,10 @@
 import ContactForm from "@/components/ContactForm/ContactForm";
 import { getPage } from "../../../../lib/md";
-import { getLocale } from "next-intl/server";
 import HeroArc from "@/components/HeroArc/HeroArc";
 import { getClients } from "../../../../lib/content";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
-export const revalidate = false;
-export const dynamic = "force-static";
-export function generateStaticParams() {
-  return [{ locale: "uk" }, { locale: "ru" }];
-}
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const page = await getPage("clients", locale);
@@ -44,6 +38,13 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+
+export const revalidate = false;
+export const dynamic = "force-static";
+export function generateStaticParams() {
+  return [{ locale: "uk" }, { locale: "ru" }];
+}
+
 export default async function Clients({ params }) {
   const { locale } = await params;
   const clientsPage = await getPage("clients", locale);
