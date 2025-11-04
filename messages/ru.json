@@ -248,7 +248,6 @@
   },
   "ContactForm": {
     "title": "Заказ шоу футбольного фристайла",
-
     "name_label": "Имя*",
     "name_placeholder": "Введите имя",
     "phone_label": "Телефон*",

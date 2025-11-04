@@ -1,4 +1,3 @@
-// components/ContactForm/ContactFormClient.jsx
 "use client";
 
 import { useState } from "react";
@@ -76,7 +75,6 @@ export default function ContactFormClient({ services = [] }) {
                 required
                 inputMode="tel"
                 placeholder={t("phone_placeholder")}
-                pattern="^\\+?\\d[\\d\\s()-]{7,}$"
                 className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
               />
             </label>
@@ -124,7 +122,6 @@ export default function ContactFormClient({ services = [] }) {
         </form>
       </section>
 
-      {/* МОДАЛКА УСПЕШНОЙ ОТПРАВКИ */}
       {showSuccess && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
           <div className="bg-white rounded-lg shadow-lg px-8 py-10 max-w-sm w-11/12 text-center">

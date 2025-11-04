@@ -13,9 +13,7 @@ export default function Header({ services = [], locale }) {
   return (
     <header className="w-full border-b bg-white shadow-sm">
       <div className="mx-auto w-full max-w-[375px] lg:max-w-[1024px] xl:max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-[160px] py-3 lg:py-4">
-        {/* ДЕСКТОП ХЕДЕР */}
         <div className="hidden lg:flex items-center justify-between">
-          {/* ЛОГО */}
           <Link
             href="/"
             className="flex items-center space-x-2 transition-transform duration-200 hover:scale-110"
@@ -25,7 +23,6 @@ export default function Header({ services = [], locale }) {
             </svg>
           </Link>
 
-          {/* ДЕСКТОП МЕНЮ */}
           <nav className="flex-1 items-center justify-center space-x-6 flex">
             <Link
               href="/about"
@@ -41,7 +38,6 @@ export default function Header({ services = [], locale }) {
               {t("portfolio")}
             </Link>
 
-            {/* ВЫПАДАЮЩИЙ СПИСОК УСЛУГ — ВОТ ЭТОГО НЕ ХВАТАЛО */}
             <ServicesDropdown services={services} locale={locale} />
 
             <Link
@@ -58,7 +54,6 @@ export default function Header({ services = [], locale }) {
             </Link>
           </nav>
 
-          {/* КОНТАКТЫ / ЯЗЫК */}
           <div className="items-center space-x-4 flex">
             <a href="tel:+380505926134" className="text-gray-700 text-sm">
               +38 (050) 592 61 34
@@ -88,9 +83,7 @@ export default function Header({ services = [], locale }) {
           </div>
         </div>
 
-        {/* МОБИЛЬНЫЙ ХЕДЕР */}
         <div className="grid grid-cols-3 items-center lg:hidden">
-          {/* СЛЕВА: бургер */}
           <div className="flex justify-start">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -130,7 +123,6 @@ export default function Header({ services = [], locale }) {
             </button>
           </div>
 
-          {/* ЦЕНТР: логотип */}
           <div className="flex justify-center">
             <Link href="/" className="flex items-center">
               <svg
@@ -150,7 +142,6 @@ export default function Header({ services = [], locale }) {
             </Link>
           </div>
 
-          {/* СПРАВА: телефон или язык */}
           <div className="flex justify-end">
             {isOpen ? (
               <LangSwitcher />
@@ -165,7 +156,6 @@ export default function Header({ services = [], locale }) {
         </div>
       </div>
 
-      {/* МОБИЛЬНОЕ МЕНЮ */}
       {isOpen && (
         <div className="flex flex-col justify-center items-center lg:hidden border-t bg-white px-4 py-2 space-y-2">
           <Link
@@ -187,7 +177,6 @@ export default function Header({ services = [], locale }) {
             {t("clients")}
           </Link>
 
-          {/* Выпадающий список услуг и в мобилке тоже */}
           <ServicesDropdown services={services} locale={locale} />
 
           <Link

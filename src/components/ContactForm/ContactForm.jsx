@@ -1,4 +1,3 @@
-// components/ContactForm/ContactForm.jsx
 import { getLocale } from "next-intl/server";
 import { getCollection } from "@/../../lib/content";
 import ContactFormClient from "./ContactFormClient";
@@ -13,6 +12,5 @@ export default async function ContactForm() {
     label: service.title,
   }));
 
-  // просто передаём данные в клиентский компонент
   return <ContactFormClient services={services} />;
 }

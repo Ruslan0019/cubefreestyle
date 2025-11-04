@@ -2,31 +2,50 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 
-export default async function TeamList({ team = [], locale = "uk" }) {
-  const t = await getTranslations();
+type Locale = "uk" | "ru";
+
+type TeamMember = {
+  slug: string;
+  thumbnail: string;
+  name: string;
+  status: string;
+};
+
+type TeamListProps = {
+  team?: TeamMember[];
+  locale?: Locale;
+};
+
+export default async function TeamList({
+  team = [],
+  locale = "uk",
+}: TeamListProps) {
+  // если передали locale — используем его, иначе next-intl возьмёт из контекста
+  const t = await getTranslations({ locale });
+
   return (
-    <section className="w-full  bg-white">
+    <section className="w-full bg-white">
       <h2 className="text-4xl lg:text-5xl font-bold text-center text-[#001F54] mb-8 lg:mb-14">
         {t("TeamList.title")}
       </h2>
 
       <div
         className="
-          grid grid-cols-2 gap-[7px]           /* мобилка: строго 2 в ряд */
+          grid grid-cols-2 gap-[7px]
           max-w-[343px] mx-auto
-          lg:flex lg:flex-wrap lg:justify-center lg:gap-4 
+          lg:flex lg:flex-wrap lg:justify-center lg:gap-4
           lg:max-w-[1024px] xl:max-w-[1392px]
         "
       >
-        {team.map((member) => (
+        {team.map((member, index) => (
           <Link
             key={member.slug}
             href={`/team/${member.slug}`}
             className="
-              group block overflow-hidden rounded-xl shadow-md hover:shadow-lg 
+              group block overflow-hidden rounded-xl shadow-md hover:shadow-lg
               transition-transform hover:scale-[1.02]
-              w-full                  /* в grid ячейке занимает всю ширину */
-              lg:w-[240px] xl:w-[336px]  /* как и было на больших брейкпоинтах */
+              w-full
+              lg:w-[240px] xl:w-[336px]
             "
           >
             <div className="relative aspect-[4/5] w-full">
@@ -34,7 +53,9 @@ export default async function TeamList({ team = [], locale = "uk" }) {
                 src={member.thumbnail}
                 alt={member.name}
                 fill
-                priority
+                // приоритет только для первой фотки, остальные ленивые — лучше для перформанса
+                priority={index === 0}
+                sizes="(min-width: 1280px) 336px, (min-width: 1024px) 240px, 50vw"
                 className="object-cover"
               />
 

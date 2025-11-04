@@ -1,12 +1,25 @@
 "use client";
+
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-export default function ServicesList({ services = [] }) {
+type ServiceItem = {
+  slug: string;
+  image: string;
+  title: string;
+  short_description: string;
+};
+
+type ServicesListProps = {
+  services?: ServiceItem[];
+};
+
+export default function ServicesList({ services = [] }: ServicesListProps) {
   return (
-    <section className="w-full flex flex-col justify-center px-6 lg:px-4 xl:px-3.5  mx-auto">
+    <section className="w-full flex flex-col justify-center px-6 lg:px-4 xl:px-3.5 mx-auto">
+      {/* mobile swiper */}
       <div className="block lg:hidden w-full">
         <Swiper spaceBetween={16} slidesPerView={"auto"} className="!px-1">
           {services.map((service) => (
@@ -21,6 +34,8 @@ export default function ServicesList({ services = [] }) {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 1024px) 220px, (max-width: 1440px) 320px, 454px"
+                  loading="lazy"
+                  draggable={false}
                 />
                 <div className="absolute bottom-0 left-0 w-full h-[138px] bg-gradient-to-b from-transparent to-black/90" />
                 <div className="absolute bottom-3 left-3 right-3 text-white">
@@ -37,6 +52,7 @@ export default function ServicesList({ services = [] }) {
         </Swiper>
       </div>
 
+      {/* desktop grid */}
       <div className="hidden lg:flex flex-wrap justify-center gap-4 w-full mx-auto max-w-[992px] xl:max-w-[1394px]">
         {services.map((service) => (
           <Link
@@ -48,8 +64,10 @@ export default function ServicesList({ services = [] }) {
               src={service.image}
               alt={service.title}
               fill
-              className="object-cover"
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 1024px) 220px, 320px"
+              loading="lazy"
+              draggable={false}
             />
             <div className="absolute bottom-0 left-0 w-full h-[160px] xl:h-[226px] bg-gradient-to-b from-transparent to-black/90" />
             <div className="absolute bottom-6 xl:bottom-[32px] left-6 xl:left-[32px] right-6 xl:right-[32px] text-white">

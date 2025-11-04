@@ -17,7 +17,6 @@ function Footer() {
           mt-12 flex flex-col lg:justify-between items-center lg:flex-row lg:gap-16
         "
       >
-        {/* Лого */}
         <Link
           className="transition-transform duration-200 hover:scale-110"
           href="/"
@@ -27,7 +26,6 @@ function Footer() {
           </svg>
         </Link>
 
-        {/* Навигация */}
         <nav
           className="grid grid-rows-6 gap-y-3 mt-6 text-2xl text-center lg:text-start mb-6 
                      lg:grid-flow-col lg:grid-rows-3 lg:gap-x-32"
@@ -70,7 +68,6 @@ function Footer() {
           </Link>
         </nav>
 
-        {/* Контакты */}
         <address className="mb-8">
           <div className="mb-4">
             <a
@@ -103,7 +100,6 @@ function Footer() {
         </address>
       </div>
 
-      {/* Copyright */}
       <p className="py-4 border-t border-[#F4F7FA33] w-full text-center text-white/60 text-sm px-4">
         <span className="mr-2">{date}</span>
         {t("Footer.copyright")}

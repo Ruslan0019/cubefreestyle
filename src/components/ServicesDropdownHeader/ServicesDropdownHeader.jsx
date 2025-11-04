@@ -11,7 +11,6 @@ export default function ServicesDropdown({ services = [], locale }) {
 
   if (!services.length) return null;
 
-  // Закрыть по клику вне дропдауна
   useEffect(() => {
     if (!open) return;
 
@@ -27,11 +26,11 @@ export default function ServicesDropdown({ services = [], locale }) {
   }, [open]);
 
   return (
-    <div className="relative" ref={ref}>
+    <div className="relative " ref={ref}>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-2 text-sm lg:text-base font-medium text-gray-700 hover:text-primary transition"
+        className="flex  items-baseline gap-2  text-gray-700 hover:text-primary transition"
       >
         <span>{label}</span>
         <span
@@ -44,8 +43,7 @@ export default function ServicesDropdown({ services = [], locale }) {
       </button>
 
       {open && (
-        <div className="absolute left-0 mt-2 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5 z-50 overflow-hidden">
-          {/* скролл со скруглением по правому краю */}
+        <div className=" absolute left-0 mt-2 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5 z-51 overflow-hidden">
           <ul className="max-h-72 overflow-y-auto custom-scrollbar py-2">
             {services.map((service) => (
               <li key={service.slug}>
@@ -60,7 +58,6 @@ export default function ServicesDropdown({ services = [], locale }) {
             ))}
           </ul>
 
-          {/* Локальные стили только для этого компонента */}
           <style jsx>{`
             .custom-scrollbar {
               scrollbar-width: thin;

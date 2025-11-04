@@ -1,7 +1,11 @@
+// app/api/contact/route.js
+import nodemailer from "nodemailer";
+
+export const revalidate = 0;
+
 export async function POST(req) {
   try {
     const formData = await req.formData();
-
     const name = formData.get("name")?.toString() || "";
     const phone = formData.get("phone")?.toString() || "";
     const service = formData.get("service")?.toString() || "";
@@ -18,35 +22,33 @@ export async function POST(req) {
 
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
-
-    if (!token || !chatId) {
-      console.error("TELEGRAM ENV MISSING", {
-        token: !!token,
-        chatId: !!chatId,
+    if (token && chatId) {
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text }),
       });
-      return new Response("Telegram not configured", { status: 500 });
     }
 
-    const telegramUrl = `https://api.telegram.org/bot${token}/sendMessage`;
-
-    const res = await fetch(telegramUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text,
-      }),
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+      },
     });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("TELEGRAM ERROR:", errorText);
-      return new Response("Error sending to Telegram", { status: 500 });
-    }
+    await transporter.sendMail({
+      from: `"Cube Freestyle" <${process.env.GMAIL_USER}>`,
+      to: process.env.SMTP_TO,
+      subject: "Нова заявка з сайту Cube Freestyle",
+      text,
+      html: text.replace(/\n/g, "<br>"),
+    });
 
     return new Response("OK", { status: 200 });
-  } catch (error) {
-    console.error("CONTACT_FORM_ERROR:", error);
+  } catch (err) {
+    console.error("CONTACT_FORM_ERROR:", err);
     return new Response("Error sending message", { status: 500 });
   }
 }

@@ -15,7 +15,7 @@ uk:
   name: Туревський Станіслав
   slug: turevskiy-stanislav
   main_photo: /uploads/Turevskyi-Stanislav.webp
-  thumbnail: /uploads/turevskiy-stanislav.png
+  thumbnail: /uploads/turevskiy-stanislav.webp
   photo: /uploads/Turevskyi-Stanislav.webp
   gallery:
     - image: /uploads/rectangle-90.webp
@@ -39,7 +39,7 @@ ru:
   name: Туревский Станислав
   slug: turevskiy-stanislav
   main_photo: /uploads/Turevskyi-Stanislav.webp
-  thumbnail: /uploads/turevskiy-stanislav.png
+  thumbnail: /uploads/turevskiy-stanislav.webp
   photo: /uploads/Turevskyi-Stanislav.webp
   gallery:
     - image: /uploads/rectangle-90.webp

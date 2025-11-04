@@ -1,4 +1,4 @@
-import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 
 export default function LocaleSwitcher() {
@@ -20,7 +20,7 @@ export default function LocaleSwitcher() {
         value={locale}
         onChange={(e) => switchLocale(e.target.value)}
       >
-        <option value="uk">UK</option>
+        <option value="uk">UA</option>
         <option value="ru">RU</option>
       </select>
     </div>

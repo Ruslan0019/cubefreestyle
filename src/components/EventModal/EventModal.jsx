@@ -1,4 +1,3 @@
-// components/EventModal/EventModal.jsx
 "use client";
 
 import { useEffect, useMemo } from "react";
@@ -34,7 +33,6 @@ export default function EventModal({ isOpen, onClose, event }) {
         videoSrc: m.kind === "video" ? m.file : null,
       };
 
-      // Кастомный рендер для ВИДЕО
       if (m.kind === "video") {
         base.renderItem = () => (
           <div className="flex h-[260px] lg:h-[560px] xl:h-[660px] w-full items-center justify-center bg-black">
@@ -78,10 +76,8 @@ export default function EventModal({ isOpen, onClose, event }) {
     >
       <div
         onClick={stop}
-        // размеры модалки фиксируются в globals.css по .modal-box
         className="modal-box w-full max-w-[343px] lg:max-w-[944px] xl:max-w-[1120px] relative overflow-hidden rounded-[4px] bg-white shadow-[0_4px_24px_rgba(20,25,26,0.12)]"
       >
-        {/* крестик — позиции фиксируются утилитами */}
         <button
           onClick={onClose}
           aria-label="Close"

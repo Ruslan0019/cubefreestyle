@@ -8,7 +8,7 @@ uk:
   name: Lívia Lemos
   slug: livialemos
   main_photo: /uploads/Turevskyi-Stanislav.webp
-  thumbnail: /uploads/turevskiy-stanislav.png
+  thumbnail: /uploads/turevskiy-stanislav.webp
   photo: /uploads/Turevskyi-Stanislav.webp
   gallery:
     - image: /uploads/rectangle-90.webp
@@ -30,7 +30,7 @@ ru:
   name: Lívia Lemos
   slug: livialemos
   main_photo: /uploads/Turevskyi-Stanislav.webp
-  thumbnail: /uploads/turevskiy-stanislav.png
+  thumbnail: /uploads/turevskiy-stanislav.webp
   photo: /uploads/Turevskyi-Stanislav.webp
   gallery:
     - image: /uploads/rectangle-90.webp

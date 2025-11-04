@@ -2,49 +2,84 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { getPage } from "../../../../lib/md";
+import type { Metadata } from "next";
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  const page = await getPage("terms_of_use", locale);
+export const revalidate = false; // максимально быстрая статика
+export const dynamic = "force-static";
+
+// ---- TYPES ----
+type Locale = "uk" | "ru";
+
+type Params = {
+  locale: Locale;
+};
+
+type PageProps = {
+  params: Params;
+};
+
+type TermsSeo = {
+  title_seo: string;
+  description_seo: string;
+};
+
+// ---- STATIC PARAMS ----
+export function generateStaticParams(): Params[] {
+  return [{ locale: "uk" }, { locale: "ru" }];
+}
+
+// ---- METADATA ----
+export async function generateMetadata({
+  params,
+}: {
+  params: any;
+}): Promise<Metadata> {
+  const { locale } = (await params) as Params;
+  const page = (await getPage("terms_of_use", locale)) as TermsSeo;
+
+  const baseUrl = "https://cubefreestyle.com.ua";
+  const path = `${locale === "ru" ? "/ru" : ""}/terms-of-use`;
+  const canonical = `${baseUrl}${path}`;
 
   return {
     alternates: {
-      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}terms-of-use`,
+      canonical,
       languages: {
-        uk: "/",
-        ru: "/ru/",
-        "x-default": `https://cubefreestyle.com.ua`,
+        uk: `${baseUrl}/terms-of-use`,
+        ru: `${baseUrl}/ru/terms-of-use`,
+        "x-default": `${baseUrl}/terms-of-use`,
       },
     },
     title: page.title_seo,
     description: page.description_seo,
     openGraph: {
       type: "website",
-      locale: locale,
+      locale,
       siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
       images: [
         {
-          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          url: `${baseUrl}/uploads/preview.jpg`,
           width: 1200,
           height: 630,
           alt: "Cube Freestyle Show",
         },
       ],
-      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}terms-of-use`,
+      url: canonical,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title_seo,
+      description: page.description_seo,
+      images: [`${baseUrl}/uploads/preview.jpg`],
     },
   };
 }
 
-export const revalidate = false;
-export const dynamic = "force-static";
-export function generateStaticParams() {
-  return [{ locale: "uk" }, { locale: "ru" }];
-}
-
-export default async function TermsOfUse({ params }) {
-  const { locale } = await params;
+// ---- PAGE ----
+export default async function TermsOfUsePage({ params }: { params: any }) {
+  const { locale } = (await params) as Params;
   const t = await getTranslations({ locale, namespace: "Terms_of_use_page" });
 
   return (
@@ -54,112 +89,99 @@ export default async function TermsOfUse({ params }) {
       </h1>
 
       <div className="mb-14 lg:mb-24 xl:mb-32">
-        <p className="flex mb-4 flex-col gap-6 font-normal text-lg leading-6 mt-[58px]">
+        <p className="mb-4 font-normal text-lg leading-6 mt-[58px]">
           {t("updated")}
         </p>
 
-        {/* 1. Загальні положення */}
         <div className="mt-4">
           <h3>{t("sections.general.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>
               {t("sections.general.items.1")}{" "}
-              <span>
-                <Link className="text-primary" href="/">
-                  https://cubefreestyle.com.ua
-                </Link>
-              </span>
+              <Link className="text-primary" href="/">
+                https://cubefreestyle.com.ua
+              </Link>
             </li>
             <li>{t("sections.general.items.2")}</li>
           </ul>
         </div>
 
-        {/* 2. Інтелектуальна власність */}
         <div className="mt-4">
           <h3>{t("sections.ip.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.ip.items.1")}</li>
             <li>{t("sections.ip.items.2")}</li>
           </ul>
         </div>
 
-        {/* 3. Дозволене використання матеріалів */}
         <div className="mt-4">
           <h3>{t("sections.permitted_use.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.permitted_use.items.1")}</li>
             <li>{t("sections.permitted_use.items.2")}</li>
             <li>{t("sections.permitted_use.items.3")}</li>
           </ul>
         </div>
 
-        {/* 4. Заборонене використання */}
         <div className="mt-4">
           <h3>{t("sections.prohibited_use.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.prohibited_use.items.1")}</li>
             <li>{t("sections.prohibited_use.items.2")}</li>
             <li>{t("sections.prohibited_use.items.3")}</li>
           </ul>
         </div>
 
-        {/* 5. Користувацький контент і зворотний зв’язок */}
         <div className="mt-4">
           <h3>{t("sections.user_content.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.user_content.items.1")}</li>
             <li>{t("sections.user_content.items.2")}</li>
           </ul>
         </div>
 
-        {/* 6. Відмова від гарантій та обмеження відповідальності */}
         <div className="mt-4">
           <h3>{t("sections.disclaimer.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.disclaimer.items.1")}</li>
             <li>{t("sections.disclaimer.items.2")}</li>
           </ul>
         </div>
 
-        {/* 7. Посилання на сторонні ресурси */}
         <div className="mt-4">
           <h3>{t("sections.external_links.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.external_links.items.1")}</li>
           </ul>
         </div>
 
-        {/* 8. Правила цитування */}
         <div className="mt-4">
           <h3>{t("sections.quoting_rules.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.quoting_rules.items.1")}</li>
             <li>{t("sections.quoting_rules.items.2")}</li>
           </ul>
         </div>
 
-        {/* 9. Порядок вирішення спорів */}
         <div className="mt-4">
           <h3>{t("sections.disputes.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.disputes.items.1")}</li>
             <li>{t("sections.disputes.items.2")}</li>
           </ul>
         </div>
 
-        {/* 10. Зміни до Правил */}
         <div className="mt-4">
           <h3>{t("sections.changes.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.changes.items.1")}</li>
             <li>{t("sections.changes.items.2")}</li>
           </ul>
         </div>
 
-        {/* 11. Контакти */}
         <div className="mt-4">
           <h3>{t("sections.contacts.title")}</h3>
-          <ul className="ml-8 ">
+          <ul className="ml-8 list-disc">
             <li>{t("sections.contacts.text")}</li>
           </ul>
         </div>

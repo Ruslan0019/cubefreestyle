@@ -11,7 +11,6 @@ export default function HeroArcBg() {
       ].join(" ")}
       aria-hidden="true"
     >
-      {/* только узоры */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none select-none"
         viewBox="0 0 1440 440"
@@ -29,14 +28,13 @@ export default function HeroArcBg() {
           </g>
         </defs>
 
-        {/* лево */}
         <use href="#tri" x="0" y="0" />
         <use href="#tri" x="46" y="140" />
         <use href="#tri" x="92" y="260" />
         <use href="#tri" x="138" y="20" />
         <use href="#tri" x="184" y="200" />
         <use href="#tri" x="230" y="90" />
-        {/* право (зеркало) */}
+
         <g transform="translate(1440,0) scale(-1,1)">
           <use href="#tri" x="0" y="0" />
           <use href="#tri" x="46" y="140" />
