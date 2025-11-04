@@ -1,4 +1,4 @@
-import { getClients, getCollection } from "@/../../lib/content";
+import { getClients, getCollection } from "../../../../lib/content";
 import { getPage } from "../../../../lib/md";
 import HeroArc from "@/components/HeroArc/HeroArc";
 import ContactForm from "@/components/ContactForm/ContactForm";
@@ -12,12 +12,10 @@ export const revalidate = false;
 export const dynamic = "force-static";
 
 // ---- TYPES ----
-type Params = {
-  locale: "uk" | "ru";
-};
+type Locale = "uk" | "ru";
 
-type PageProps = {
-  params: Params;
+type Params = {
+  locale: Locale;
 };
 
 type AboutPageData = {
@@ -37,18 +35,23 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({
   params,
 }: {
-  params: Params;
+  // важно: any, чтобы не спорить с тем, что Next считает тут Promise
+  params: any;
 }): Promise<Metadata> {
-  const { locale } = await params;
-  const page: AboutPageData = await getPage("about", locale);
+  const { locale } = (await params) as Params;
+  const page = (await getPage("about", locale)) as AboutPageData;
+
+  const baseUrl = "https://cubefreestyle.com.ua";
+  const path = `${locale === "ru" ? "/ru" : ""}/about`;
+  const canonical = `${baseUrl}${path}`;
 
   return {
     alternates: {
-      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}about`,
+      canonical,
       languages: {
-        uk: "/about",
-        ru: "/ru/about",
-        "x-default": "https://cubefreestyle.com.ua/about",
+        uk: `${baseUrl}/about`,
+        ru: `${baseUrl}/ru/about`,
+        "x-default": `${baseUrl}/about`,
       },
     },
     title: page.title_seo,
@@ -61,26 +64,31 @@ export async function generateMetadata({
       description: page.description_seo,
       images: [
         {
-          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          url: `${baseUrl}/uploads/preview.jpg`,
           width: 1200,
           height: 630,
           alt: "Cube Freestyle Show",
         },
       ],
-      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}about`,
+      url: canonical,
     },
     twitter: {
       card: "summary_large_image",
       title: page.title_seo,
       description: page.description_seo,
-      images: ["https://cubefreestyle.com.ua/uploads/preview.jpg"],
+      images: [`${baseUrl}/uploads/preview.jpg`],
     },
   };
 }
 
 // ---- PAGE ----
-export default async function AboutPage({ params }: PageProps) {
-  const { locale } = await params;
+export default async function AboutPage({
+  params,
+}: {
+  // тут тоже any, чтобы совпадало с тем, что Next туда реально кидает
+  params: any;
+}) {
+  const { locale } = (await params) as Params;
 
   const [about, gallery, team, clients] = await Promise.all([
     getPage("about", locale) as Promise<AboutPageData>,

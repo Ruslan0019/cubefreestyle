@@ -18,7 +18,7 @@ export default async function ServiceClient({ serviceData }) {
   const servicesData = await getCollection("services", locale);
 
   const servicesOptions = servicesData.map((service) => ({
-    value: service.title, // или service.slug, если хочешь, чтобы в value был slug
+    value: service.title,
     label: service.title,
   }));
 
@@ -63,7 +63,7 @@ export default async function ServiceClient({ serviceData }) {
           arrowColor="#838E9E"
         />
       </section>
-      <ContactForm locale={locale} />
+      <ContactForm />
     </section>
   );
 }

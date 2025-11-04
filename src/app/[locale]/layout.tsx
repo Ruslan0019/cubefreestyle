@@ -2,29 +2,33 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { NextIntlClientProvider } from "next-intl";
 import { getCollection } from "../../../lib/content";
-import type { ReactNode } from "react";
 
 type Locale = "uk" | "ru";
 
-type LayoutProps = {
-  children: ReactNode;
-  params: { locale: Locale };
-};
+// временно определим базовый тип сервиса
+interface Service {
+  title: string;
+  slug: string;
+  image?: string;
+  [key: string]: any;
+}
 
-export default async function LocaleLayout({ children, params }: LayoutProps) {
-  const { locale } = await params;
+export default async function LocaleLayout({ children, params }: any) {
+  const { locale } = (await params) as { locale: Locale };
 
-  // грузим переводы и услуги параллельно
-  const [messagesModule, services] = await Promise.all([
+  const [messagesModule, servicesData] = await Promise.all([
     import(`../../../messages/${locale}.json`),
     getCollection("services", locale),
   ]);
 
-  const messages = messagesModule.default as Record<string, unknown>;
+  // ✨ Явно указываем тип
+  const services = servicesData as Service[];
+
+  const messages = messagesModule.default;
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <Header services={services} locale={locale} />
+      <Header services={services as any} locale={locale} />
       {children}
       <Footer />
     </NextIntlClientProvider>

@@ -3,11 +3,14 @@ import { getPage } from "../../../../lib/md";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import { Metadata } from "next";
 
-type Params = {
-  locale: "uk" | "ru";
-};
+// ---- Типы ----
+type Locale = "uk" | "ru";
 
-type ContactPageData = {
+interface Params {
+  locale: Locale;
+}
+
+interface ContactPageData {
   title: string;
   subtitle: string;
   title_seo: string;
@@ -34,13 +37,13 @@ type ContactPageData = {
     message_placeholder: string;
     button_text: string;
   };
-};
+}
 
-// Типизация generateMetadata (Next.js 14+)
+// ---- Метаданные (SEO + Open Graph) ----
 export async function generateMetadata({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const page = await getPage("contacts", locale);
@@ -49,9 +52,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}contacts`,
       languages: {
-        uk: "/",
-        ru: "/ru/",
-        "x-default": "https://cubefreestyle.com.ua",
+        uk: "/contacts",
+        ru: "/ru/contacts",
+        "x-default": "https://cubefreestyle.com.ua/contacts",
       },
     },
     title: page.title_seo,
@@ -75,31 +78,37 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 3600;
-export const dynamic = "force-static";
-
-// Типизация generateStaticParams
+// ---- Генерация статических параметров ----
 export function generateStaticParams(): Params[] {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
 
-// Типизация props страницы
-export default async function ContactsPage({ params }: { params: Params }) {
+export const revalidate = 3600;
+export const dynamic = "force-static";
+
+// ---- Основной компонент ----
+export default async function ContactsPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const { locale } = await params;
   const contactsPage: ContactPageData = await getPage("contacts", locale);
 
   return (
     <section className="relative w-full bg-white">
+      {/* Hero блок */}
       <div className="relative w-full flex flex-col items-center justify-start bg-white">
         <HeroArc />
-        <h1 className="mt-12 lg:mt-14 xl:mt-[80px] text-[36px] z-1 leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px]">
+        <h1 className="mt-12 lg:mt-14 xl:mt-[80px] text-[36px] leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px]">
           {contactsPage.title}
         </h1>
-        <p className="z-1 mt-4 lg:mt-6 max-w-[343px] lg:max-w-[804px] text-[16px] lg:text-[18px] font-semibold text-white text-center">
+        <p className="mt-4 lg:mt-6 max-w-[343px] lg:max-w-[804px] text-[16px] lg:text-[18px] font-semibold text-white text-center">
           {contactsPage.subtitle}
         </p>
       </div>
 
+      {/* Контентная часть */}
       <section className="relative z-10 flex justify-center m-12 lg:mt-14 xl:mt-[80px] mb-24 xl:mb-[128px] px-4">
         <div
           className="
@@ -108,14 +117,14 @@ export default async function ContactsPage({ params }: { params: Params }) {
             rounded-[4px] overflow-hidden
           "
         >
-          {/* Блок с контактами */}
+          {/* Левая колонка — контакты */}
           <aside
             className="
               flex flex-col justify-center px-6 lg:px-10 gap-[24px] bg-[#F4F7FA]
               w-full lg:w-[336px] xl:w-[400px] py-10
             "
           >
-            <div className="flex gap-6 ">
+            <div className="flex gap-6">
               <svg width="32" height="32">
                 <use href="/sprite.svg#contactLocation" />
               </svg>
@@ -129,7 +138,7 @@ export default async function ContactsPage({ params }: { params: Params }) {
               </div>
             </div>
 
-            <div className="flex gap-6 ">
+            <div className="flex gap-6">
               <svg width="32" height="32">
                 <use href="/sprite.svg#contactLocation" />
               </svg>
@@ -152,7 +161,7 @@ export default async function ContactsPage({ params }: { params: Params }) {
                   {contactsPage.contact_info.phone_title}
                 </p>
                 <a
-                  href="tel:+380505926134"
+                  href={`tel:${contactsPage.contact_info.phone_number}`}
                   className="font-semibold text-[18px] text-[#0B63E5]"
                 >
                   {contactsPage.contact_info.phone_number}
@@ -169,7 +178,7 @@ export default async function ContactsPage({ params }: { params: Params }) {
                   {contactsPage.contact_info.email_title}
                 </p>
                 <a
-                  href="mailto:cubefreestyle@gmail.com"
+                  href={`mailto:${contactsPage.contact_info.email}`}
                   className="font-semibold text-[18px] text-[#0B63E5]"
                 >
                   {contactsPage.contact_info.email}
@@ -177,6 +186,7 @@ export default async function ContactsPage({ params }: { params: Params }) {
               </div>
             </div>
 
+            {/* Соцсети */}
             <div className="flex flex-wrap gap-6 mt-[12px]">
               <a
                 className="transition-transform hover:scale-105"
@@ -211,7 +221,7 @@ export default async function ContactsPage({ params }: { params: Params }) {
             </div>
           </aside>
 
-          {/* Форма */}
+          {/* Правая колонка — форма */}
           <div
             className="
               flex flex-col items-center justify-center px-6 lg:px-[56px] bg-white
@@ -307,6 +317,7 @@ export default async function ContactsPage({ params }: { params: Params }) {
         </div>
       </section>
 
+      {/* Хлебные крошки */}
       <div className="px-4 lg:px-10 xl:px-40 my-4 lg:my-6">
         <Breadcrumbs />
       </div>

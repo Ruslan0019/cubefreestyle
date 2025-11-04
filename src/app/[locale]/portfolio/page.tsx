@@ -108,7 +108,7 @@ export default async function PortfolioPage({ params }: { params: any }) {
           </h1>
 
           <div className="w-full px-4 xl:px-40 mt-14 xl:mt-24 flex justify-center z-50">
-            <EventsGrid events={events} locale={locale} />
+            <EventsGrid events={events as any} locale={locale} />
           </div>
 
           <Pagination
@@ -120,7 +120,7 @@ export default async function PortfolioPage({ params }: { params: any }) {
 
         <section className="pt-24 pb-12 xl:py-32">
           <ReviewsList
-            reviews={reviews}
+            reviews={reviews as any}
             titleColor="#02142e"
             arrowColor="#838E9E"
           />

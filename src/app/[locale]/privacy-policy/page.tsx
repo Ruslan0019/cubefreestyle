@@ -14,10 +14,6 @@ type Params = {
   locale: Locale;
 };
 
-type PageProps = {
-  params: Params;
-};
-
 type PrivacyPageSeo = {
   title_seo: string;
   description_seo: string;
@@ -73,7 +69,7 @@ export async function generateMetadata({
 }
 
 // ---- PAGE ----
-export default async function PrivacyPolicyPage({ params }: PageProps) {
+export default async function PrivacyPolicyPage({ params }: any) {
   const { locale } = (await params) as Params;
   const t = await getTranslations({ locale, namespace: "Privacy_policy_page" });
 

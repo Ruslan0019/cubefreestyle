@@ -166,7 +166,7 @@ export default async function TeamMemberPage({ params }: { params: any }) {
 
       {galleryImages.length > 0 && (
         <section className="my-16 lg:my-24">
-          <GallerySection images={galleryImages} />
+          <GallerySection images={galleryImages as any} />
         </section>
       )}
 

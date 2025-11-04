@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 import { getPage } from "../../../../lib/md";
 import { getClients } from "../../../../lib/content";
 import Image from "next/image";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 type Params = { locale: "uk" | "ru" };
 
@@ -20,13 +20,9 @@ interface ClientsPageData {
   description_seo: string;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const page = await getPage("clients", locale);
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const { locale } = (await params) as Params;
+  const page = (await getPage("clients", locale)) as ClientsPageData;
 
   return {
     alternates: {
@@ -71,11 +67,11 @@ export function generateStaticParams(): Params[] {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
 
-export default async function ClientsPage({ params }: { params: Params }) {
-  const { locale } = await params;
+export default async function ClientsPage({ params }: any) {
+  const { locale } = (await params) as Params;
 
-  const clientsPage: ClientsPageData = await getPage("clients", locale);
-  const clientsList: ClientItem[] = await getClients();
+  const clientsPage = (await getPage("clients", locale)) as ClientsPageData;
+  const clientsList = (await getClients()) as ClientItem[];
 
   return (
     <>
@@ -89,6 +85,7 @@ export default async function ClientsPage({ params }: { params: Params }) {
             {clientsPage.subtitle}
           </p>
         </div>
+
         <ul className="mt-36 mb-24 lg:mt-32 xl:mt-[168px] w-full max-w-[343px] lg:max-w-[944px] xl:max-w-[1120px] flex flex-wrap justify-center gap-8 lg:gap-16">
           {clientsList.map((el, i) => (
             <li
@@ -108,7 +105,7 @@ export default async function ClientsPage({ params }: { params: Params }) {
             </li>
           ))}
         </ul>
-        Ы
+
         <ContactForm />
       </section>
 

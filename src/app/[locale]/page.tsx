@@ -16,14 +16,7 @@ export const revalidate = 3600;
 export const dynamic = "force-static";
 
 type Locale = "uk" | "ru";
-
-type Params = {
-  locale: Locale;
-};
-
-type HomePageProps = {
-  params: Params;
-};
+type Params = { locale: Locale };
 
 type HomeSeo = {
   title_seo: string;
@@ -34,11 +27,8 @@ export function generateStaticParams(): Params[] {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: any;
-}): Promise<Metadata> {
+// ✅ Исправлено: аргументы типизированы как any
+export async function generateMetadata({ params }: any): Promise<Metadata> {
   const { locale } = (await params) as Params;
   const page = (await getPage("home", locale)) as HomeSeo;
 
@@ -82,10 +72,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params;
+// ✅ Исправлено: аргумент params = any
+export default async function HomePage({ params }: any) {
+  const { locale } = (await params) as Params;
 
-  // ⚡ грузим всё параллельно
+  // Загружаем все данные параллельно
   const [t, page, services, reviews, clients, team] = await Promise.all([
     getTranslations({ locale, namespace: "Home_page" }),
     getPage("home", locale),
@@ -170,41 +161,24 @@ export default async function HomePage({ params }: HomePageProps) {
               {page.whyUs_title}
             </h2>
             <div className="flex flex-col gap-6">
-              <div className="flex items-start gap-4 bg-white p-6 pl-0 rounded-lg shadow hover:shadow-lg transition">
-                <svg width="48" height="74">
-                  <use href="/sprite.svg#CUBELOGO2" />
-                </svg>
-                <div>
-                  <h3 className="font-semibold text-lg text-dark">
-                    {page.whyUs_card1_title}
-                  </h3>
-                  <p className="text-dark">{page.whyUs_card1_description}</p>
+              {[1, 2, 3].map((num) => (
+                <div
+                  key={num}
+                  className="flex items-start gap-4 bg-white p-6 pl-0 rounded-lg shadow hover:shadow-lg transition"
+                >
+                  <svg width="48" height="74">
+                    <use href="/sprite.svg#CUBELOGO2" />
+                  </svg>
+                  <div>
+                    <h3 className="font-semibold text-lg text-dark">
+                      {page[`whyUs_card${num}_title`]}
+                    </h3>
+                    <p className="text-dark">
+                      {page[`whyUs_card${num}_description`]}
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-white p-6 pl-0 rounded-lg shadow hover:shadow-lg transition">
-                <svg width="48" height="74">
-                  <use href="/sprite.svg#CUBELOGO2" />
-                </svg>
-                <div>
-                  <h3 className="font-semibold text-lg text-dark">
-                    {page.whyUs_card2_title}
-                  </h3>
-                  <p className="text-dark">{page.whyUs_card2_description}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-white p-6 pl-0 rounded-lg shadow hover:shadow-lg transition">
-                <svg width="48" height="74">
-                  <use href="/sprite.svg#CUBELOGO2" />
-                </svg>
-                <div>
-                  <h3 className="font-semibold text-dark text-lg">
-                    {page.whyUs_card3_title}
-                  </h3>
-                  <p className="text-dark">{page.whyUs_card3_description}</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -258,7 +232,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* CONTACT FORM */}
       <section className="w-full mt-12 xl:mt-32">
-        <ContactForm locale={locale} />
+        <ContactForm />
       </section>
     </div>
   );

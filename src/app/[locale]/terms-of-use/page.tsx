@@ -14,10 +14,6 @@ type Params = {
   locale: Locale;
 };
 
-type PageProps = {
-  params: Params;
-};
-
 type TermsSeo = {
   title_seo: string;
   description_seo: string;
