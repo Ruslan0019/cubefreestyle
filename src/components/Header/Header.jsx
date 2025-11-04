@@ -1,7 +1,7 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
-import { useState } from "react";
+import { Link, usePathname } from "@/i18n/routing";
+import { useEffect, useState } from "react";
 import LangSwitcher from "../LangSwitcher/LangSwitcher";
 import { useTranslations } from "next-intl";
 import ServicesDropdown from "../ServicesDropdownHeader/ServicesDropdownHeader";
@@ -9,9 +9,15 @@ import ServicesDropdown from "../ServicesDropdownHeader/ServicesDropdownHeader";
 export default function Header({ services = [], locale }) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Navigations");
+  const pathname = usePathname(); // ✅ отслеживаем текущий маршрут
+
+  // ✅ закрываем меню при переходе на другую страницу
+  useEffect(() => {
+    if (isOpen) setIsOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="w-full border-b bg-white shadow-sm">
+    <header className="w-full border-b bg-white shadow-sm fixed top-0 z-100 xl:relative h-[80px]">
       <div className="mx-auto w-full max-w-[375px] lg:max-w-[1024px] xl:max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-[160px] py-3 lg:py-4">
         <div className="hidden lg:flex items-center justify-between">
           <Link
