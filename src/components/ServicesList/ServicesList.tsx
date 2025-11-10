@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
 
 type ServiceItem = {
   slug: string;
@@ -15,48 +16,73 @@ type ServiceItem = {
 
 type ServicesListProps = {
   services?: ServiceItem[];
+  arrowColor?: string;
 };
 
-export default function ServicesList({ services = [] }: ServicesListProps) {
+export default function ServicesList({
+  services = [],
+  arrowColor = "#0B63E5", // цвет стрелок по умолчанию
+}: ServicesListProps) {
   return (
     <section className="w-full flex flex-col justify-center px-6 lg:px-4 xl:px-3.5 mx-auto">
       {/* mobile swiper */}
       <div className="block lg:hidden w-full">
-        <Swiper
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          spaceBetween={16}
-          slidesPerView={2}
-          className="!px-1 !w-[336px]"
-        >
-          {services.map((service) => (
-            <SwiperSlide
-              key={service.slug}
-              className="!w-[160px] !h-[160px] relative rounded-sm overflow-hidden"
-            >
-              <Link href={`/${service.slug}`}>
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 1024px) 220px, (max-width: 1440px) 320px, 454px"
-                  loading="lazy"
-                  draggable={false}
-                />
-                <div className="absolute bottom-0 left-0 w-full h-[138px] bg-gradient-to-b from-transparent to-black/90" />
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <h3 className="font-semibold text-[18px] leading-[24px] mb-1">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm leading-[18px] opacity-80">
-                    {service.short_description}
-                  </p>
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="relative max-w-[360px] mx-auto">
+          <Swiper
+            modules={[Pagination, Navigation]}
+            pagination={{ clickable: true }}
+            navigation={{
+              prevEl: ".services-prev",
+              nextEl: ".services-next",
+            }}
+            spaceBetween={16}
+            slidesPerView={2}
+            className="!w-[336px]"
+          >
+            {services.map((service) => (
+              <SwiperSlide
+                key={service.slug}
+                className="!w-[160px] !h-[160px] relative rounded-sm overflow-hidden"
+              >
+                <Link href={`/${service.slug}`}>
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 1024px) 220px, (max-width: 1440px) 320px, 454px"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                  <div className="absolute bottom-0 left-0 w-full h-[138px] bg-gradient-to-b from-transparent to-black/90" />
+                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                    <h3 className="font-semibold text-[18px] leading-[24px] mb-1">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm leading-[18px] opacity-80">
+                      {service.short_description}
+                    </p>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* стрелки под слайдером */}
+          <div className="mt-4 flex justify-center gap-12">
+            <button type="button" className="services-prev text-white">
+              <svg width="24" height="24" className="fill-current">
+                <use href="/sprite.svg#ArrowLeftGray" />
+              </svg>
+            </button>
+
+            <button type="button" className="services-next text-white">
+              <svg width="24" height="24" className="fill-current">
+                <use href="/sprite.svg#ArrowRightGray" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* desktop grid */}
