@@ -87,7 +87,7 @@ export default async function ClientsPage({ params }: any) {
           {clientsList.map((el, i) => (
             <li
               key={i}
-              className="w-[92px] lg:w-[138px] xl:w-[172px] h-[48px] flex items-center justify-center relative"
+              className="w-[92px] lg:w-[138px] xl:w-[172px] h-[92px] lg:h-[138px] xl:h-[172px] flex items-center justify-center relative"
             >
               <Image
                 src={el.image}
