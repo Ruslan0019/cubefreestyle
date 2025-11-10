@@ -14,9 +14,8 @@ type Locale = "uk" | "ru";
 interface Service {
   slug: string;
   title: string;
-  title_seo?: string | null;
-  description_seo?: string | null;
-  // добавь сюда остальные поля, которые реально нужны ServiceClient
+  title_seo: string;
+  description_seo: string;
   [key: string]: unknown;
 }
 
@@ -25,12 +24,9 @@ interface ServicePageParams {
   slug: string;
 }
 
-// ВАЖНО: params теперь Promise
 interface ServicePageProps {
   params: Promise<ServicePageParams>;
 }
-
-const BASE_URL = "https://cubefreestyle.com.ua";
 
 async function getService(
   locale: Locale,
@@ -60,39 +56,44 @@ export async function generateStaticParams(): Promise<ServicePageParams[]> {
 export async function generateMetadata({
   params,
 }: ServicePageProps): Promise<Metadata> {
-  // ⬇️ вот тут и нужен await params
   const { slug, locale } = await params;
   const serviceData = await getService(locale, slug);
-
-  const baseTitle = "Cube Freestyle";
-  const baseDescription =
-    "Cube Freestyle — професійні футбольні фрістайл шоу та тренування.";
-
-  const title = serviceData?.title_seo || serviceData?.title || baseTitle;
-  const description = serviceData?.description_seo || baseDescription;
-
-  const localePrefix = locale === "ru" ? "/ru" : "";
-  const path = `/${slug}`;
-  const url = `${BASE_URL}${localePrefix}${path}`;
-
+  const baseUrl = "https://cubefreestyle.com.ua";
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
+  if (!serviceData) {
+    notFound();
+  }
   return {
-    title,
-    description,
+    title: serviceData.title_seo,
+    description: serviceData.description_seo,
     alternates: {
-      canonical: url,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}${slug}`,
+      languages: {
+        uk: `${baseUrl}/${slug}`,
+        ru: `${baseUrl}/ru/${slug}`,
+        "x-default": `${baseUrl}/${slug}`,
+      },
     },
     openGraph: {
-      title,
-      description,
-      url,
+      title: serviceData.title_seo,
+      description: serviceData.description_seo,
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}${slug}`,
       siteName: "Cube Freestyle",
+      images: [
+        {
+          url: `${baseUrl}/uploads/preview.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "Cube Freestyle Show",
+        },
+      ],
       type: "website",
+      locale: ogLocale,
     },
   };
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
-  // ⬇️ и здесь тоже await params — иначе та самая ошибка
   const { slug, locale } = await params;
   const serviceData = await getService(locale, slug);
 
@@ -102,9 +103,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
   return (
     <>
-      <ServiceClient serviceData={serviceData} />
+      <ServiceClient serviceData={serviceData} locale={locale} />
       <div className="px-4 lg:px-10 xl:px-40 my-4 lg:my-6">
-        <Breadcrumbs />
+        <Breadcrumbs serviceData={serviceData} />
       </div>
     </>
   );

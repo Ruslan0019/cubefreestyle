@@ -33,12 +33,11 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   const page = (await getPage("home", locale)) as HomeSeo;
 
   const baseUrl = "https://cubefreestyle.com.ua";
-  const path = locale === "ru" ? "/ru" : "";
-  const canonical = `${baseUrl}${path}`;
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   return {
     alternates: {
-      canonical,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}`,
       languages: {
         uk: `${baseUrl}/`,
         ru: `${baseUrl}/ru/`,
@@ -49,7 +48,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     description: page.description_seo,
     openGraph: {
       type: "website",
-      locale,
+      locale: ogLocale,
       siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
@@ -61,13 +60,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
           alt: "Cube Freestyle Show",
         },
       ],
-      url: canonical,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page.title_seo,
-      description: page.description_seo,
-      images: [`${baseUrl}/uploads/preview.jpg`],
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}`,
     },
   };
 }

@@ -18,7 +18,7 @@ function Footer() {
         "
       >
         <Link
-          className="transition-transform duration-200 hover:scale-110"
+          className=" hover:scale-110 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           href="/"
         >
           <svg width="48" height="74">
@@ -31,37 +31,37 @@ function Footer() {
                      lg:grid-flow-col lg:grid-rows-3 lg:gap-x-32"
         >
           <Link
-            className="transition-transform hover:scale-105 text-white text-lg font-normal leading-6"
-            href="/about"
+            className=" hover:scale-105 text-white text-lg font-normal leading-6 active:scale-95  transition-all duration-200 ease-in-out"
+            href="/about-cube"
           >
             {t("Navigations.about")}
           </Link>
           <Link
-            className="transition-transform hover:scale-105 text-white text-lg font-normal leading-6"
+            className=" hover:scale-105 text-white text-lg font-normal leading-6 active:scale-95  transition-all duration-200 ease-in-out"
             href="/portfolio"
           >
             {t("Navigations.portfolio")}
           </Link>
           <Link
-            className="transition-transform hover:scale-105 text-white text-lg font-normal leading-6"
+            className=" hover:scale-105 text-white text-lg font-normal leading-6 active:scale-95  transition-all duration-200 ease-in-out"
             href="/clients"
           >
             {t("Navigations.clients")}
           </Link>
           <Link
-            className="transition-transform hover:scale-105 text-white text-lg font-normal leading-6"
+            className=" hover:scale-105 text-white text-lg font-normal leading-6 active:scale-95  transition-all duration-200 ease-in-out"
             href="/contacts"
           >
             {t("Navigations.contacts")}
           </Link>
           <Link
-            className="transition-transform hover:scale-105 text-white text-lg font-normal leading-6"
+            className=" hover:scale-105 text-white text-lg font-normal leading-6 active:scale-95  transition-all duration-200 ease-in-out"
             href="/privacy-policy"
           >
             {t("Navigations.privacy-policy")}
           </Link>
           <Link
-            className="transition-transform hover:scale-105 text-white text-lg font-normal leading-6"
+            className=" hover:scale-105 text-white text-lg font-normal leading-6 active:scale-95  transition-all duration-200 ease-in-out"
             href="/terms-of-use"
           >
             {t("Navigations.terms-of-use")}

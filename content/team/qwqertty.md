@@ -3,10 +3,10 @@ uk:
   achievements:
     - text: Суддя чемпіонату світу Super Ball 2014, м. Ліберец (Чехія)
   bio: >-
-
+    
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit a inventore natus, tempora sapiente repellendus vero consectetur? Est deserunt, debitis suscipit architecto itaque, facere, voluptatem minima fuga enim rem in? Quam accusantium, saepe repellat exercitationem ipsam dolor illo consectetur hic sit fugiat, similique aliquam. Dolore deleniti doloremque natus quod dolorum?</p>
-  name: Andrew Henderson
-  slug: andrew-henderson
+  name: Денис "DeRo" Романенко
+  slug: dero
   main_photo: /uploads/Turevskyi-Stanislav.webp
   thumbnail: /uploads/turevskiy-stanislav.webp
   photo: /uploads/Turevskyi-Stanislav.webp
@@ -19,15 +19,18 @@ uk:
     - image: /uploads/rectangle-90.webp
   status: Alive
   role: Фрістайлер
+  title_seo: Денис "DeRo" Романенко — Фристайлер з команди CUBE
+  description_seo: Персональна сторінка професійного футбольного фрістайлера з
+    команди "КУБ" - Дениса "DeRo" Романенко
   section_title: Про фристайлера
 ru:
   achievements:
     - text: Учасник чемпіонату світу Super Ball 2013, м. Прага
   bio: >-
-
+    
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit a inventore natus, tempora sapiente repellendus vero consectetur? Est deserunt, debitis suscipit architecto itaque, facere, voluptatem minima fuga enim rem in? Quam accusantium, saepe repellat exercitationem ipsam dolor illo consectetur hic sit fugiat, similique aliquam. Dolore deleniti doloremque natus quod dolorum?</p>
-  name: Andrew Henderson
-  slug: andrew-henderson
+  name: Денис "DeRo" Романенко
+  slug: dero
   main_photo: /uploads/Turevskyi-Stanislav.webp
   thumbnail: /uploads/turevskiy-stanislav.webp
   photo: /uploads/Turevskyi-Stanislav.webp
@@ -40,5 +43,8 @@ ru:
     - image: /uploads/rectangle-90.webp
   status: Alive
   role: Фристайлер
+  title_seo: Денис "DeRo" Романенко — Фристайлер из команды CUBE
+  description_seo: Персональная страница профессионального футбольного фристайлера
+    из команды "КУБ" - Дениса "DeRo" Романенко
   section_title: " О фристайлере"
 ---

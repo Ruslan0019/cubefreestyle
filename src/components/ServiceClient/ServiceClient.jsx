@@ -6,15 +6,14 @@ import ReviewsList from "../ReviewsList/ReviewsList";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import ContactForm from "../ContactForm/ContactForm";
 import HeroArc from "../HeroArc/HeroArc";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import HeroRequestButton from "../HeroRequestButton/HeroRequestButton";
 
-export default async function ServiceClient({ serviceData }) {
-  const locale = await getLocale();
+export default async function ServiceClient({ locale, serviceData }) {
   const gallery = await getCollection("gallery");
   const images = gallery[0]?.images || [];
   const reviews = await getCollection("reviews", locale);
-  const t = await getTranslations();
+  const t = await getTranslations({ locale });
   const servicesData = await getCollection("services", locale);
 
   const servicesOptions = servicesData.map((service) => ({
@@ -37,8 +36,9 @@ export default async function ServiceClient({ serviceData }) {
             </div>
           </div>
         )}
-        <div className="mt-6 xl:mt-10 flex justify-center w-full px-4">
+        <div className="mt-6 xl:mt-10 flex justify-center  px-4 text-white">
           <HeroRequestButton
+            className={` w-[343px] lg:w-[400px]`}
             label={t("Home_page.button")}
             servicesData={servicesOptions}
           />

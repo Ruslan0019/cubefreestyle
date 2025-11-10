@@ -5,7 +5,6 @@ import { getCollection } from "../../../lib/content";
 
 type Locale = "uk" | "ru";
 
-// временно определим базовый тип сервиса
 interface Service {
   title: string;
   slug: string;
@@ -29,7 +28,7 @@ export default async function LocaleLayout({ children, params }: any) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <Header services={services as any} locale={locale} />
-      <main className="pt-[80px]">{children}</main>
+      <main className="pt-[80px] xl:pt-[0]">{children}</main>
       <Footer />
     </NextIntlClientProvider>
   );

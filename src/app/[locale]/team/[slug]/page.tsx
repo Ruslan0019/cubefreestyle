@@ -29,6 +29,8 @@ type TeamGalleryImage = {
 type TeamMember = {
   slug: string;
   name: string;
+  description_seo: string;
+  title_seo: string;
   photo: string;
   bio: string;
   section_title: string;
@@ -61,6 +63,8 @@ export async function generateMetadata({
 
   const team = (await getCollection("team", locale)) as TeamMember[];
   const member = team.find((m) => m.slug === slug);
+  const baseUrl = "https://cubefreestyle.com.ua";
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   if (!member) {
     return {
@@ -69,37 +73,32 @@ export async function generateMetadata({
     };
   }
 
-  const description =
-    member.bio && member.bio.length > 0
-      ? member.bio.slice(0, 160)
-      : "Учасник команди Cube Freestyle";
-
   return {
-    title: member.name,
-    description,
+    alternates: {
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}${member.slug}`,
+      languages: {
+        uk: `${baseUrl}/${member.slug}`,
+        ru: `${baseUrl}/ru/${member.slug}`,
+        "x-default": `${baseUrl}/${member.slug}`,
+      },
+    },
+    title: member.title_seo,
+    description: member.description_seo,
     openGraph: {
-      title: member.name,
-      description,
+      title: member.title_seo,
+      description: member.description_seo,
       type: "profile",
-      url: `https://cubefreestyle.com.ua/${
-        locale === "ru" ? "ru/" : ""
-      }team/${member.slug}`,
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}team/${member.slug}`,
       siteName: "Cube Freestyle",
-      locale,
+      locale: ogLocale,
       images: [
         {
-          url: member.photo,
-          width: 800,
-          height: 800,
-          alt: member.name,
+          url: `${baseUrl}/uploads/preview.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "Cube Freestyle Show",
         },
       ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: member.name,
-      description,
-      images: [member.photo],
     },
   };
 }

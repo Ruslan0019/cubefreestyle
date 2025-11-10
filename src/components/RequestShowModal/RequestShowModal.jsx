@@ -55,7 +55,10 @@ export default function RequestShowModal({
       form.reset();
       setShowSuccess(true);
 
-      setTimeout(() => setShowSuccess(false), 3000);
+      setTimeout(() => {
+        setShowSuccess(false);
+        onClose?.();
+      }, 3000);
     } catch (err) {
       console.error("REQUEST_SHOW_MODAL_CONTACT_ERROR", err);
     } finally {

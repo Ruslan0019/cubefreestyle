@@ -30,7 +30,7 @@ export default function ServicesDropdown({ services = [], locale }) {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex  items-baseline gap-2  text-gray-700 hover:text-primary transition"
+        className="flex  items-baseline gap-2  text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
       >
         <span>{label}</span>
         <span
@@ -49,7 +49,7 @@ export default function ServicesDropdown({ services = [], locale }) {
               <li key={service.slug}>
                 <Link
                   href={`/${service.slug}`}
-                  className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
+                  className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 active:scale-95 active:text-primary/80 transition-all duration-200 ease-in-out"
                   onClick={() => setOpen(false)}
                 >
                   {service.title}

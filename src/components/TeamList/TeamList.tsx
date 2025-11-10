@@ -43,9 +43,9 @@ export default async function TeamList({
             href={`/team/${member.slug}`}
             className="
               group block overflow-hidden rounded-xl shadow-md hover:shadow-lg
-              transition-transform hover:scale-[1.02]
+               hover:scale-[1.02]
               w-full
-              lg:w-[240px] xl:w-[336px]
+              lg:w-[240px] xl:w-[336px] active:scale-90 active:text-primary/80 transition-all duration-500 ease-in-out
             "
           >
             <div className="relative aspect-[4/5] w-full">

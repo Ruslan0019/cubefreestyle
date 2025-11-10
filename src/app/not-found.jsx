@@ -3,7 +3,8 @@ import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 
-// Никаких export revalidate/dynamic/generateStaticParams в not-found!
+export const revalidate = false;
+export const dynamic = "force-static";
 
 export default async function NotFound() {
   const locale = await getLocale();

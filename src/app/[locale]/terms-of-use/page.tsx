@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { getPage } from "../../../../lib/md";
 import type { Metadata } from "next";
 
-export const revalidate = false; // максимально быстрая статика
+export const revalidate = false;
 export const dynamic = "force-static";
 
 // ---- TYPES ----
@@ -34,12 +34,11 @@ export async function generateMetadata({
   const page = (await getPage("terms_of_use", locale)) as TermsSeo;
 
   const baseUrl = "https://cubefreestyle.com.ua";
-  const path = `${locale === "ru" ? "/ru" : ""}/terms-of-use`;
-  const canonical = `${baseUrl}${path}`;
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   return {
     alternates: {
-      canonical,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}terms-of-use`,
       languages: {
         uk: `${baseUrl}/terms-of-use`,
         ru: `${baseUrl}/ru/terms-of-use`,
@@ -50,7 +49,7 @@ export async function generateMetadata({
     description: page.description_seo,
     openGraph: {
       type: "website",
-      locale,
+      locale: ogLocale,
       siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
@@ -62,13 +61,7 @@ export async function generateMetadata({
           alt: "Cube Freestyle Show",
         },
       ],
-      url: canonical,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page.title_seo,
-      description: page.description_seo,
-      images: [`${baseUrl}/uploads/preview.jpg`],
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}terms-of-use`,
     },
   };
 }

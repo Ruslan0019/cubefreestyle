@@ -1,4 +1,5 @@
-local_backend: true
+local_backend: false
+# local_backend: true
 backend:
   name: git-gateway
   branch: main
@@ -533,6 +534,13 @@ collections:
     create: true
     slug: "{{fields.slug}}"
     fields:
+      - { name: "title_seo", label: "Title_Seo", widget: "string", i18n: true }
+      - {
+          name: "description_seo",
+          label: "Description_Seo",
+          widget: "string",
+          i18n: true,
+        }
       - { name: "name", label: "Ім’я", widget: "string", i18n: true }
       - { name: "slug", label: "Slug (URL)", widget: "string", i18n: true }
       - { name: "role", label: "Посада/Роль", widget: "string", i18n: true }

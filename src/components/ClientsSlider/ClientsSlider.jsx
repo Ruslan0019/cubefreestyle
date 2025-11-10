@@ -24,15 +24,16 @@ export default function ClientsSlider({ clients = [] }) {
       >
         {clients.map((client, i) => (
           <SwiperSlide key={i} style={{ width: "auto" }}>
-            <Image
-              src={client.image}
-              alt={client.alt || "Client logo"}
-              width={120}
-              height={60}
-              loading="lazy"
-              decoding="async"
-              className="object-contain"
-            />
+            <div className="relative w-[120px] h-[60px] lg:w-[160px] lg:h-[160px] flex items-center justify-center">
+              <Image
+                src={client.image}
+                alt={client.alt || "Client logo"}
+                fill
+                loading="lazy"
+                decoding="async"
+                className="object-contain"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

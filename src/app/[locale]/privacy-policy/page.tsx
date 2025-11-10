@@ -29,12 +29,11 @@ export async function generateMetadata({
   const page = (await getPage("privacy_policy", locale)) as PrivacyPageSeo;
 
   const baseUrl = "https://cubefreestyle.com.ua";
-  const path = `${locale === "ru" ? "/ru" : ""}/privacy-policy`;
-  const canonical = `${baseUrl}${path}`;
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   return {
     alternates: {
-      canonical,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}privacy-policy`,
       languages: {
         uk: `${baseUrl}/privacy-policy`,
         ru: `${baseUrl}/ru/privacy-policy`,
@@ -45,7 +44,7 @@ export async function generateMetadata({
     description: page.description_seo,
     openGraph: {
       type: "website",
-      locale,
+      locale: ogLocale,
       siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
@@ -57,13 +56,7 @@ export async function generateMetadata({
           alt: "Cube Freestyle Show",
         },
       ],
-      url: canonical,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page.title_seo,
-      description: page.description_seo,
-      images: [`${baseUrl}/uploads/preview.jpg`],
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}privacy-policy`,
     },
   };
 }

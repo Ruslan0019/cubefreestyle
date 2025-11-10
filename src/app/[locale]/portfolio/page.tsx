@@ -36,10 +36,10 @@ export async function generateMetadata({
   params: any;
   searchParams: any;
 }): Promise<Metadata> {
-  const { locale } = await params; // ✅ окей
-  const { page } = await searchParams; // ✅ ждём searchParams целиком
+  const { locale } = await params;
+  const { page } = await searchParams;
 
-  const pageParam = page ?? "1"; // уже обычное значение
+  const pageParam = page ?? "1";
 
   const portfolio = await getPage("portfolio_page", locale);
 
@@ -75,12 +75,6 @@ export async function generateMetadata({
         },
       ],
       locale,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: portfolio.title_seo ?? portfolio.title,
-      description: portfolio.description_seo ?? "",
-      images: ["https://cubefreestyle.com.ua/uploads/preview.jpg"],
     },
   };
 }

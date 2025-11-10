@@ -1,4 +1,6 @@
 clients:
+  - image: /uploads/ніссан.png
+    alt: nissan
   - image: /uploads/image13.webp
     alt: jnicef
   - image: /uploads/image12.webp

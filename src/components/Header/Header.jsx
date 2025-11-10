@@ -22,7 +22,7 @@ export default function Header({ services = [], locale }) {
         <div className="hidden lg:flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center space-x-2 transition-transform duration-200 hover:scale-110"
+            className="flex items-center space-x-2  hover:scale-110 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           >
             <svg width="80" height="48">
               <use href="/sprite.svg#CubeLogo" />
@@ -31,15 +31,15 @@ export default function Header({ services = [], locale }) {
 
           <nav className="flex-1 items-center justify-center space-x-6 flex">
             <Link
-              href="/about"
-              className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
+              href="/about-cube"
+              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("about")}
             </Link>
 
             <Link
               href="/portfolio"
-              className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
+              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("portfolio")}
             </Link>
@@ -48,13 +48,13 @@ export default function Header({ services = [], locale }) {
 
             <Link
               href="/clients"
-              className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
+              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("clients")}
             </Link>
             <Link
               href="/contacts"
-              className="text-gray-700 hover:text-primary transition-transform duration-200 hover:scale-105"
+              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("contacts")}
             </Link>
@@ -130,7 +130,10 @@ export default function Header({ services = [], locale }) {
           </div>
 
           <div className="flex justify-center">
-            <Link href="/" className="flex items-center">
+            <Link
+              href="/"
+              className="flex items-center active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+            >
               <svg
                 className="w-20 h-12"
                 viewBox="0 0 80 48"
@@ -165,20 +168,21 @@ export default function Header({ services = [], locale }) {
       {isOpen && (
         <div className="flex flex-col justify-center items-center lg:hidden border-t bg-white px-4 py-2 space-y-2">
           <Link
-            href="/about"
-            className="block text-gray-700 hover:text-primary"
+            href="/about-cube"
+            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           >
             {t("about")}
           </Link>
+
           <Link
             href="/portfolio"
-            className="block text-gray-700 hover:text-primary"
+            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           >
             {t("portfolio")}
           </Link>
           <Link
             href="/clients"
-            className="block text-gray-700 hover:text-primary"
+            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           >
             {t("clients")}
           </Link>
@@ -187,7 +191,7 @@ export default function Header({ services = [], locale }) {
 
           <Link
             href="/contacts"
-            className="block text-gray-700 hover:text-primary"
+            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           >
             {t("contacts")}
           </Link>

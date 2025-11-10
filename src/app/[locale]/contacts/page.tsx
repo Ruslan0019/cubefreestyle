@@ -2,8 +2,10 @@ import HeroArc from "@/components/HeroArc/HeroArc";
 import { getPage } from "../../../../lib/md";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { getCollection } from "lib/content";
+import ContactFormInner from "@/components/ContactForm/ContactFormInner";
 
-// ---- Типы ----
 type Locale = "uk" | "ru";
 
 interface Params {
@@ -39,7 +41,6 @@ interface ContactPageData {
   };
 }
 
-// ---- Метаданные (SEO + Open Graph) ----
 export async function generateMetadata({
   params,
 }: {
@@ -47,38 +48,40 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const page = await getPage("contacts", locale);
+  const baseUrl = "https://cubefreestyle.com.ua";
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   return {
+    title: page.title_seo,
+    description: page.description_seo,
     alternates: {
-      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}contacts`,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}contacts`,
       languages: {
         uk: "/contacts",
         ru: "/ru/contacts",
-        "x-default": "https://cubefreestyle.com.ua/contacts",
+        "x-default": `${baseUrl}/contacts`,
       },
     },
-    title: page.title_seo,
-    description: page.description_seo,
+
     openGraph: {
       type: "website",
-      locale,
+      locale: ogLocale,
       siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
       images: [
         {
-          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          url: `${baseUrl}/uploads/preview.jpg`,
           width: 1200,
           height: 630,
           alt: "Cube Freestyle Show",
         },
       ],
-      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}contacts`,
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}contacts`,
     },
   };
 }
 
-// ---- Генерация статических параметров ----
 export function generateStaticParams(): Params[] {
   return [{ locale: "uk" }, { locale: "ru" }];
 }
@@ -86,18 +89,24 @@ export function generateStaticParams(): Params[] {
 export const revalidate = 3600;
 export const dynamic = "force-static";
 
-// ---- Основной компонент ----
 export default async function ContactsPage({
   params,
 }: {
   params: Promise<Params>;
 }) {
   const { locale } = await params;
+  const t = await getTranslations({ locale });
+  const servicesData = await getCollection("services", locale);
+
+  const services = servicesData.map((service: any) => ({
+    value: service.title,
+    label: service.title,
+  }));
+
   const contactsPage: ContactPageData = await getPage("contacts", locale);
 
   return (
     <section className="relative w-full bg-white">
-      {/* Hero блок */}
       <div className="relative w-full flex flex-col items-center justify-start bg-white">
         <HeroArc />
         <h1 className="mt-12 lg:mt-14 xl:mt-[80px] text-[36px] leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px]">
@@ -108,7 +117,6 @@ export default async function ContactsPage({
         </p>
       </div>
 
-      {/* Контентная часть */}
       <section className="relative z-10 flex justify-center m-12 lg:mt-14 xl:mt-[80px] mb-24 xl:mb-[128px] px-4">
         <div
           className="
@@ -117,7 +125,6 @@ export default async function ContactsPage({
             rounded-[4px] overflow-hidden
           "
         >
-          {/* Левая колонка — контакты */}
           <aside
             className="
               flex flex-col justify-center px-6 lg:px-10 gap-[24px] bg-[#F4F7FA]
@@ -186,7 +193,6 @@ export default async function ContactsPage({
               </div>
             </div>
 
-            {/* Соцсети */}
             <div className="flex flex-wrap gap-6 mt-[12px]">
               <a
                 className="transition-transform hover:scale-105"
@@ -221,7 +227,6 @@ export default async function ContactsPage({
             </div>
           </aside>
 
-          {/* Правая колонка — форма */}
           <div
             className="
               flex flex-col items-center justify-center px-6 lg:px-[56px] bg-white
@@ -237,87 +242,11 @@ export default async function ContactsPage({
               {contactsPage.form.form_title}
             </h2>
 
-            <form className="flex flex-col gap-[24px] w-full max-w-full sm:max-w-[512px]">
-              <div className="flex flex-col gap-[16px] w-full">
-                <div className="flex flex-col flex-1">
-                  <label
-                    htmlFor="name"
-                    className="text-[16px] font-medium text-[#02142E] mb-[6px]"
-                  >
-                    {contactsPage.form.name_label}
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder={contactsPage.form.name_placeholder}
-                    className="h-[48px] border border-[#EDEDED] rounded-[5px] px-[16px] text-[18px] placeholder:text-[#838E9E] w-full"
-                  />
-                </div>
-
-                <div className="flex flex-col flex-1">
-                  <label
-                    htmlFor="phone"
-                    className="text-[16px] font-medium text-[#02142E] mb-[6px]"
-                  >
-                    {contactsPage.form.phone_label}
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    placeholder={contactsPage.form.phone_placeholder}
-                    className="h-[48px] border border-[#EDEDED] rounded-[5px] px-[16px] text-[18px] placeholder:text-[#838E9E] w-full"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col w-full">
-                <label
-                  htmlFor="service"
-                  className="text-[16px] font-medium text-[#02142E] mb-[6px]"
-                >
-                  {contactsPage.form.service_label}
-                </label>
-                <select
-                  id="service"
-                  className="h-[48px] border border-[#EDEDED] rounded-[5px] px-[16px] text-[18px] text-[#02142E] placeholder:text-[#838E9E] w-full"
-                >
-                  <option>{contactsPage.form.service_placeholder}</option>
-                  <option>Шоу на івент</option>
-                  <option>Промо-активація</option>
-                  <option>Навчання</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col w-full">
-                <label
-                  htmlFor="message"
-                  className="text-[16px] font-medium text-[#02142E] mb-[6px]"
-                >
-                  {contactsPage.form.message_label}
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  placeholder={contactsPage.form.message_placeholder}
-                  className="border border-[#EDEDED] rounded-[5px] px-[16px] py-[12px] text-[18px] placeholder:text-[#838E9E] w-full"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="
-                  w-full sm:w-[218px] h-[56px] bg-[#0B63E5] text-white text-[18px] font-semibold rounded-[4px]
-                  shadow-[0px_4px_24px_rgba(10,63,143,0.3)] mx-auto cursor-pointer
-                "
-              >
-                {contactsPage.form.button_text}
-              </button>
-            </form>
+            <ContactFormInner contactsPage={contactsPage} services={services} />
           </div>
         </div>
       </section>
 
-      {/* Хлебные крошки */}
       <div className="px-4 lg:px-10 xl:px-40 my-4 lg:my-6">
         <Breadcrumbs />
       </div>

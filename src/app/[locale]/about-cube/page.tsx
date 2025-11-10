@@ -35,27 +35,26 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({
   params,
 }: {
-  // важно: any, чтобы не спорить с тем, что Next считает тут Promise
   params: any;
 }): Promise<Metadata> {
   const { locale } = (await params) as Params;
   const page = (await getPage("about", locale)) as AboutPageData;
 
   const baseUrl = "https://cubefreestyle.com.ua";
-  const path = `${locale === "ru" ? "/ru" : ""}/about`;
-  const canonical = `${baseUrl}${path}`;
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   return {
-    alternates: {
-      canonical,
-      languages: {
-        uk: `${baseUrl}/about`,
-        ru: `${baseUrl}/ru/about`,
-        "x-default": `${baseUrl}/about`,
-      },
-    },
     title: page.title_seo,
     description: page.description_seo,
+    alternates: {
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}about-cube`,
+      languages: {
+        uk: `${baseUrl}/about-cube`,
+        ru: `${baseUrl}/ru/about-cube`,
+        "x-default": `${baseUrl}/about-cube`,
+      },
+    },
+
     openGraph: {
       type: "website",
       locale,
@@ -70,24 +69,13 @@ export async function generateMetadata({
           alt: "Cube Freestyle Show",
         },
       ],
-      url: canonical,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page.title_seo,
-      description: page.description_seo,
-      images: [`${baseUrl}/uploads/preview.jpg`],
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}about-cube`,
     },
   };
 }
 
 // ---- PAGE ----
-export default async function AboutPage({
-  params,
-}: {
-  // тут тоже any, чтобы совпадало с тем, что Next туда реально кидает
-  params: any;
-}) {
+export default async function AboutPage({ params }: { params: any }) {
   const { locale } = (await params) as Params;
 
   const [about, gallery, team, clients] = await Promise.all([

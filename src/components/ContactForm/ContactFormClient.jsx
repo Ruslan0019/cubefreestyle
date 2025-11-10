@@ -58,11 +58,12 @@ export default function ContactFormClient({ services = [] }) {
                 {t("name_label")}
               </span>
               <input
+                id="name"
                 name="name"
                 required
                 minLength={2}
                 placeholder={t("name_placeholder")}
-                className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
+                className="w-full outline-none  rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
               />
             </label>
 
@@ -75,7 +76,7 @@ export default function ContactFormClient({ services = [] }) {
                 required
                 inputMode="tel"
                 placeholder={t("phone_placeholder")}
-                className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
+                className="w-full rounded-md outline-none bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2"
               />
             </label>
           </div>
@@ -104,9 +105,9 @@ export default function ContactFormClient({ services = [] }) {
             </span>
             <textarea
               name="message"
-              rows="4"
+              rows={4}
               placeholder={t("massage_placeholder")}
-              className="w-full rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2 resize-none"
+              className="w-full outline-none rounded-md bg-white/10 text-white px-4 py-3 ring-1 ring-white/20 focus:ring-2 resize-none"
             />
           </label>
 

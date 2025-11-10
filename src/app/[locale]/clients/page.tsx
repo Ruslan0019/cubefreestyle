@@ -23,39 +23,36 @@ interface ClientsPageData {
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const { locale } = (await params) as Params;
   const page = (await getPage("clients", locale)) as ClientsPageData;
+  const baseUrl = "https://cubefreestyle.com.ua";
+  const ogLocale = locale === "ru" ? "ru_RU" : "uk_UA";
 
   return {
+    title: page.title_seo,
+    description: page.description_seo,
     alternates: {
-      canonical: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}clients`,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}clients`,
       languages: {
         uk: "/clients",
         ru: "/ru/clients",
-        "x-default": "https://cubefreestyle.com.ua/clients",
+        "x-default": `${baseUrl}/clients`,
       },
     },
-    title: page.title_seo,
-    description: page.description_seo,
+
     openGraph: {
-      type: "website",
-      locale,
-      siteName: "Cube Freestyle",
       title: page.title_seo,
       description: page.description_seo,
+      url: `${baseUrl}/${locale === "ru" ? "ru/" : ""}clients`,
+      siteName: "Cube Freestyle",
       images: [
         {
-          url: "https://cubefreestyle.com.ua/uploads/preview.jpg",
+          url: `${baseUrl}/uploads/preview.jpg`,
           width: 1200,
           height: 630,
           alt: "Cube Freestyle Show",
         },
       ],
-      url: `https://cubefreestyle.com.ua/${locale === "ru" ? "ru/" : ""}clients`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page.title_seo,
-      description: page.description_seo,
-      images: ["https://cubefreestyle.com.ua/uploads/preview.jpg"],
+      type: "website",
+      locale: ogLocale,
     },
   };
 }
@@ -90,14 +87,13 @@ export default async function ClientsPage({ params }: any) {
           {clientsList.map((el, i) => (
             <li
               key={i}
-              className="w-full max-w-[92px] lg:max-w-[138px] xl:max-w-[172px] aspect-[172/48] flex items-center justify-center"
+              className="w-[92px] lg:w-[138px] xl:w-[172px] h-[48px] flex items-center justify-center relative"
             >
               <Image
                 src={el.image}
-                width={172}
-                height={48}
                 alt={el.alt}
                 title={el.alt}
+                fill
                 className="object-contain"
                 loading="lazy"
                 sizes="(max-width: 768px) 92px, (max-width: 1200px) 138px, 172px"

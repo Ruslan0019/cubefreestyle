@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Pagination } from "swiper/modules";
 
 type ServiceItem = {
   slug: string;
@@ -21,11 +22,17 @@ export default function ServicesList({ services = [] }: ServicesListProps) {
     <section className="w-full flex flex-col justify-center px-6 lg:px-4 xl:px-3.5 mx-auto">
       {/* mobile swiper */}
       <div className="block lg:hidden w-full">
-        <Swiper spaceBetween={16} slidesPerView={"auto"} className="!px-1">
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={16}
+          slidesPerView={2}
+          className="!px-1 !w-[336px]"
+        >
           {services.map((service) => (
             <SwiperSlide
               key={service.slug}
-              className="!w-[220px] !h-[220px] relative rounded-sm overflow-hidden"
+              className="!w-[160px] !h-[160px] relative rounded-sm overflow-hidden"
             >
               <Link href={`/${service.slug}`}>
                 <Image
