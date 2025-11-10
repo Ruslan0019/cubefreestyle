@@ -8,7 +8,7 @@ uk:
     area_title: "Де ми виступаємо:"
     area_value: вся Україна
     phone_title: Наш телефон
-    phone_number: +38 (050) 591 61 34
+    phone_number: +38 (050) 592 61 34
     email_title: Наша пошта
     email: cubefreestyle@gmail.com
   form:
@@ -26,16 +26,16 @@ uk:
   description_seo: Зв'яжіться з нами та замовте унікальне шоу з футбольного
     фрістайлу в Дніпрі та Україні. Залишайте заявку зараз!
 ru:
-  subtitle: Заказывай шоу футбольного фристайла.
+  subtitle: Заказывай шоу футбольного фристайла
   title: Контакты
   contact_info:
-    phone_number: +38 (050) 591 61 34
+    phone_number: +38 (050) 592 61 34
     location_title: "Где мы находимся:"
-    location_value: Днепр.
+    location_value: Днепр
     area_title: "Где мы выступаем:"
-    area_value: Вся Украина.
-    phone_title: Наш телефон.
-    email_title: Наша почта.
+    area_value: Вся Украина
+    phone_title: Наш телефон
+    email_title: Наша почта
     email: cubefreestyle@gmail.com
   form:
     name_label: имя*
