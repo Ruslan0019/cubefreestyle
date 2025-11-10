@@ -59,9 +59,6 @@ export default function ServicesList({
                     <h3 className="font-semibold text-[18px] leading-[24px] mb-1">
                       {service.title}
                     </h3>
-                    <p className="text-sm leading-[18px] opacity-80">
-                      {service.short_description}
-                    </p>
                   </div>
                 </Link>
               </SwiperSlide>

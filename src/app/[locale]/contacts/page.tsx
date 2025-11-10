@@ -117,21 +117,21 @@ export default async function ContactsPage({
         </p>
       </div>
 
-      <section className="relative z-10 flex justify-center m-12 lg:mt-14 xl:mt-[80px] mb-24 xl:mb-[128px] px-4">
+      <section className="relative z-10 flex justify-center m-12 lg:mt-14 xl:mt-[80px] mb-24 xl:mb-[128px] ">
         <div
           className="
             flex flex-col lg:flex-row shadow-[0px_4px_24px_rgba(20,25,26,0.12)]
-            w-full max-w-full sm:max-w-[600px] lg:max-w-[944px] xl:max-w-[1120px]
+             w-full max-w-[343px] lg:max-w-[944px] xl:max-w-[1120px]
             rounded-[4px] overflow-hidden
           "
         >
           <aside
             className="
-              flex flex-col justify-center px-6 lg:px-10 gap-[24px] bg-[#F4F7FA]
+              flex flex-col justify-center px-1 lg:px-10 gap-[24px] bg-[#F4F7FA]
               w-full lg:w-[336px] xl:w-[400px] py-10
             "
           >
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <svg width="32" height="32">
                 <use href="/sprite.svg#contactLocation" />
               </svg>
@@ -145,7 +145,7 @@ export default async function ContactsPage({
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <svg width="32" height="32">
                 <use href="/sprite.svg#contactLocation" />
               </svg>
@@ -159,7 +159,7 @@ export default async function ContactsPage({
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <svg width="32" height="32">
                 <use href="/sprite.svg#contactPhone" />
               </svg>
@@ -176,7 +176,7 @@ export default async function ContactsPage({
               </div>
             </div>
 
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <svg width="32" height="32" overflow="visible">
                 <use href="/sprite.svg#contactEmail" />
               </svg>
@@ -193,7 +193,7 @@ export default async function ContactsPage({
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-6 mt-[12px]">
+            <div className="flex flex-wrap gap-6 mt-[12px] m-auto ">
               <a
                 className="transition-transform hover:scale-105"
                 target="_blank"

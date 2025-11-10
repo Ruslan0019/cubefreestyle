@@ -4,7 +4,7 @@ export default function HeroArcBg() {
     <div
       className={[
         "absolute w-full overflow-hidden bg-[#0E65E5]",
-        "h-[360px] lg:h-[412px] xl:h-[540px]",
+        "h-[412px] xl:h-[540px]",
         // вырезаем дугу снизу (маска)
         "[mask-image:radial-gradient(120%_80%_at_50%_110%,transparent_60%,black_61%)]",
         "[-webkit-mask-image:radial-gradient(120%_80%_at_50%_110%,transparent_60%,black_61%)]",
