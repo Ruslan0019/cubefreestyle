@@ -24,7 +24,7 @@ export default function ClientsSlider({ clients = [] }) {
       >
         {clients.map((client, i) => (
           <SwiperSlide key={i} style={{ width: "auto" }}>
-            <div className="relative w-[120px] h-[60px] lg:w-[160px] lg:h-[160px] flex items-center justify-center">
+            <div className="relative w-[64px] h-[64px] lg:w-[84px] lg:h-[84px] flex items-center justify-center">
               <Image
                 src={client.image}
                 alt={client.alt || "Client logo"}
