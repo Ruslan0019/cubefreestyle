@@ -3,6 +3,7 @@ uk:
   whyUs_card1_title: Вражаюче шоу
   whyUs_card2_title: Інтерактив з глядачами
   whyUs_card3_title: Гнучкий формат
+  serice_title: Наші послуги
   whyUs_card1_description: Вдало підібрані трюки з м'ячем захоплюють увагу з перших секунд.
   whyUs_card2_description: Публіка стає частиною виступу, що робить шоу ще яскравішим.
   about_title: Шоу футбольного фристайлу:що це?
@@ -17,6 +18,10 @@ uk:
 
 
     Формат гнучкий – від сольних виступів до командних номерів і майстер-класів. Це сучасно, ефектно й завжди вражає публіку.
+  hero_video_mobile: /uploads/video_mobile.mp4
+  hero_poster_mobile: /uploads/poster_mobile.webp
+  hero_poster_desktop: /uploads/poster_desktop.webp
+  hero_video_desktop: /uploads/video_desktop.mp4
   hero_title: Шоу футбольного фристайлу від команди CUBE
   title_seo: Замовити Шоу Футбольного Фристайлу в Дніпрі та Україні — Команда CUBE
   hero_button: Замовити виступ
@@ -28,6 +33,7 @@ ru:
   whyUs_card1_title: Впечатляющее шоу
   whyUs_card2_title: Интерактив с публикой
   whyUs_card3_title: Гибкий формат
+  serice_title: Наши услуги
   whyUs_card1_description: Удачно подобранные трюки с мячом захватывают внимание с первых секунд.
   whyUs_card2_description: Зрители становятся частью выступления, что делает шоу ещё ярче.
   about_title: Шоу футбольного фристайла:что это?
@@ -42,6 +48,10 @@ ru:
 
 
     Формат гибкий – от сольных выступлений до командных номеров и мастер-классов. Это современно, эффектно и всегда впечатляет публику.
+  hero_video_mobile: /uploads/video_mobile.mp4
+  hero_poster_mobile: /uploads/poster_mobile.webp
+  hero_poster_desktop: /uploads/poster_desktop.webp
+  hero_video_desktop: /uploads/video_desktop.mp4
   hero_title: Шоу футбольного фристайла от команды CUBE
   title_seo: Заказать Шоу Футбольного Фристайла в Днепре и Украине — Команда CUBE
   hero_button: Заказать выступление

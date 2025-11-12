@@ -34,6 +34,30 @@ collections:
               i18n: true,
             }
           - {
+              name: "hero_video_desktop",
+              label: "Hero Video (Desktop)",
+              widget: "file",
+              i18n: true,
+            }
+          - {
+              name: "hero_video_mobile",
+              label: "Hero Video (Mobile)",
+              widget: "file",
+              i18n: true,
+            }
+          - {
+              name: "hero_poster_desktop",
+              label: "Hero Poster (Desktop)",
+              widget: "image",
+              i18n: true,
+            }
+          - {
+              name: "hero_poster_mobile",
+              label: "Hero Poster (Mobile)",
+              widget: "image",
+              i18n: true,
+            }
+          - {
               name: "hero_title",
               label: "Hero_title",
               widget: "string",

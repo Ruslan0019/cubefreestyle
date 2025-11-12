@@ -89,15 +89,24 @@ export default async function HomePage({ params }: any) {
       {/* HERO */}
       <section className="relative w-full h-[700px] lg:h-[680px] xl:h-[780px] flex items-center justify-center lg:justify-start">
         <Image
-          src="/uploads/poster.webp"
-          alt=""
+          src={
+            typeof window !== "undefined" && window.innerWidth < 1024
+              ? page.hero_poster_mobile
+              : page.hero_poster_desktop
+          }
+          alt="Hero poster"
           fill
           priority
           sizes="100vw"
           className="object-cover z-0"
         />
 
-        <HydratedVideo />
+        <HydratedVideo
+          desktopVideo={page.hero_video_desktop}
+          mobileVideo={page.hero_video_mobile}
+          desktopPoster={page.hero_poster_desktop}
+          mobilePoster={page.hero_poster_mobile}
+        />
 
         <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
 

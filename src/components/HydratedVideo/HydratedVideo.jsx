@@ -2,47 +2,39 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function HydratedVideo() {
+export default function HydratedVideo({
+  desktopVideo,
+  mobileVideo,
+  desktopPoster,
+  mobilePoster,
+}) {
   const ref = useRef(null);
-  const [canPlay, setCanPlay] = useState(false);
-  // по умолчанию считаем, что экран мобильный/планшет
+  const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
+  const [loaded, setLoaded] = useState(false);
 
-  // Определяем, мобильный (до 1024) или нет
+  // Проверка устройства
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const mq = window.matchMedia("(max-width: 1023px)");
-
-    const update = () => {
-      setIsMobile(mq.matches);
-    };
-
+    const update = () => setIsMobile(mq.matches);
     update();
 
     if (mq.addEventListener) {
       mq.addEventListener("change", update);
       return () => mq.removeEventListener("change", update);
+    } else {
+      mq.addListener(update);
+      return () => mq.removeListener(update);
     }
-
-    mq.addListener(update);
-    return () => mq.removeListener(update);
   }, []);
 
-  // Ленивая подгрузка видео только на НЕ-мобилках (>= 1024px)
+  // Загружаем видео лениво, только когда секция видима
   useEffect(() => {
-    if (isMobile) return;
-
-    const connection = navigator.connection;
-    const saveData = connection?.saveData;
-    const slow = ["slow-2g", "2g"].includes(connection?.effectiveType || "");
-
-    if (saveData || slow) return;
-
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setCanPlay(true);
+          setIsVisible(true);
           io.disconnect();
         }
       },
@@ -50,28 +42,42 @@ export default function HydratedVideo() {
     );
 
     if (ref.current) io.observe(ref.current);
-
     return () => io.disconnect();
-  }, [isMobile]);
+  }, []);
 
-  // До 1024px — всегда только постер (Image под этим div’ом)
-  // и пока видео не разрешено — тоже только постер.
-  if (isMobile || !canPlay) {
-    return <div ref={ref} className="absolute inset-0" aria-hidden="true" />;
-  }
+  const posterSrc = isMobile ? mobilePoster : desktopPoster;
+  const videoSrc = isMobile ? mobileVideo : desktopVideo;
 
-  // Десктоп (>= 1024) — показываем видео поверх постера
   return (
-    <video
-      className="absolute inset-0 w-full h-full object-cover z-0"
-      muted
-      loop
-      playsInline
-      autoPlay
-      preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="/videos/freestyle.webm" type="video/webm" />
-    </video>
+    <div ref={ref} className="absolute inset-0 z-0">
+      {/* Постер — всегда мгновенно видимый */}
+      <img
+        src={posterSrc}
+        alt=""
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          loaded ? "opacity-0" : "opacity-100"
+        }`}
+        loading="eager"
+        decoding="async"
+      />
+
+      {/* Видео — догружается и перекрывает постер */}
+      {isVisible && (
+        <video
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          muted
+          loop
+          playsInline
+          autoPlay
+          preload="none"
+          poster={posterSrc}
+          onCanPlay={() => setLoaded(true)}
+        >
+          <source src={videoSrc} type="video/webm" />
+        </video>
+      )}
+    </div>
   );
 }
