@@ -92,6 +92,7 @@ export default function Header({ services = [], locale }) {
         <div className="grid grid-cols-3 items-center lg:hidden">
           <div className="flex justify-start">
             <button
+              aria-label="Відкрити меню"
               onClick={() => setIsOpen(!isOpen)}
               className="focus:outline-none"
             >

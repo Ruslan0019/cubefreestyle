@@ -13,7 +13,6 @@ export default function HydratedVideo({
   const [isMobile, setIsMobile] = useState(true);
   const [loaded, setLoaded] = useState(false);
 
-  // Проверка устройства
   useEffect(() => {
     if (typeof window === "undefined") return;
     const mq = window.matchMedia("(max-width: 1023px)");
@@ -29,7 +28,6 @@ export default function HydratedVideo({
     }
   }, []);
 
-  // Загружаем видео лениво, только когда секция видима
   useEffect(() => {
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -50,7 +48,6 @@ export default function HydratedVideo({
 
   return (
     <div ref={ref} className="absolute inset-0 z-0">
-      {/* Постер — всегда мгновенно видимый */}
       <img
         src={posterSrc}
         alt=""
@@ -61,7 +58,6 @@ export default function HydratedVideo({
         decoding="async"
       />
 
-      {/* Видео — догружается и перекрывает постер */}
       {isVisible && (
         <video
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
@@ -75,7 +71,7 @@ export default function HydratedVideo({
           poster={posterSrc}
           onCanPlay={() => setLoaded(true)}
         >
-          <source src={videoSrc} type="video/webm" />
+          <source src={videoSrc} type="video/mp4" />
         </video>
       )}
     </div>
