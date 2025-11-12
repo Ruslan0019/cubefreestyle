@@ -12,13 +12,13 @@ uk:
     email_title: Наша пошта
     email: cubefreestyle@gmail.com
   form:
-    name_label: ім’я*
+    name_label: Ім’я *
     phone_placeholder: "+380"
-    phone_label: Телефон*
+    phone_label: Телефон *
     service_placeholder: Оберіть послугу
-    service_label: Оберіть послугу*
+    service_label: Оберіть послугу *
     button_text: Відправити
-    message_placeholder: Напишіть нам повідомленя  (необовʼязково)
+    message_placeholder: Напишіть нам повідомленя (необовʼязково)
     message_label: Повідомлення
     form_title: Замовлення шоу футбольного фристайлу
     name_placeholder: Введіть імʼя
@@ -38,16 +38,16 @@ ru:
     email_title: Наша почта
     email: cubefreestyle@gmail.com
   form:
-    name_label: имя*
+    name_label: Имя *
     phone_placeholder: "+380"
-    phone_label: Телефон*
+    phone_label: "Телефон* "
     service_placeholder: Выберите услугу.
-    service_label: Выберите услугу*
+    service_label: Выберите услугу *
     button_text: Отправить
-    message_placeholder: Напишите нам сообщение (необязательно).
+    message_placeholder: Напишите нам сообщение (необязательно)
     message_label: Сообщение
-    form_title: Заказ шоу футбольного фристайла.
-    name_placeholder: Введите имя.
+    form_title: Заказ шоу футбольного фристайла
+    name_placeholder: Введите имя
   title_seo: Контакты – Команда по Футбольному Фристайлу CUBE
   description_seo: Свяжитесь с нами и закажите уникальное шоу с футбольного
     фристайла в Днепре и Украине. Оставляйте заявку сейчас!
