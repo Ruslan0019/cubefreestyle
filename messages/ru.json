@@ -205,7 +205,19 @@
     "clients": "Клиенты",
     "contacts": "Контакты",
     "privacy-policy": "Политика конфиденциальности",
-    "terms-of-use": "Правила пользования"
+    "terms-of-use": "Правила пользования",
+    "home_link": "На главную страницу",
+    "call_us": "Позвонить нам",
+    "open_telegram": "Открыть Telegram",
+    "open_viber": "Открыть Viber",
+    "open_menu": "Открыть меню",
+    "close_menu": "Закрыть меню",
+    "previous_service": "Предыдущая услуга",
+    "next_service": "Следующая услуга",
+    "previous_review": "Предыдущий отзыв",
+    "next_review": "Следующий отзыв",
+    "open_youtube": "Открыть youtube",
+    "open_instagram": "Открыть instagram"
   },
   "Footer": {
     "copyright": "Все права защищены"

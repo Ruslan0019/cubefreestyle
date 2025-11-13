@@ -67,13 +67,21 @@ export default function ServicesList({
 
           {/* стрелки под слайдером */}
           <div className="mt-4 flex justify-center gap-12">
-            <button type="button" className="services-prev text-white">
+            <button
+              aria-label="Попередня послуга"
+              type="button"
+              className="services-prev text-white"
+            >
               <svg width="24" height="24" className="fill-current">
                 <use href="/sprite.svg#ArrowLeftGray" />
               </svg>
             </button>
 
-            <button type="button" className="services-next text-white">
+            <button
+              aria-label="Наступна послуга"
+              type="button"
+              className="services-next text-white"
+            >
               <svg width="24" height="24" className="fill-current">
                 <use href="/sprite.svg#ArrowRightGray" />
               </svg>

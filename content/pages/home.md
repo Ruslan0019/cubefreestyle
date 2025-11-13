@@ -8,6 +8,7 @@ uk:
   whyUs_card2_description: Публіка стає частиною виступу, що робить шоу ще яскравішим.
   about_title: Шоу футбольного фристайлу:що це?
   whyUs_card3_description: Виступ адаптується під будь-яку подію та аудиторію.
+  map_image_mobile: /uploads/mapMobile.svg
   about_description: >-
     Футбольний фристайл – це видовищні трюки з м’ячем у поєднанні з музикою,   
     акробатикою та драйвом. Це не футбол у класичному розумінні, а справжнє   
@@ -23,6 +24,7 @@ uk:
   hero_poster_desktop: /uploads/poster_desktop.webp
   hero_video_desktop: /uploads/video_desktop.mp4
   hero_title: Шоу футбольного фристайлу від команди CUBE
+  map_image_desktop: /uploads/mapDesktop.svg
   title_seo: Замовити Шоу Футбольного Фристайлу в Дніпрі та Україні — Команда CUBE
   hero_button: Замовити виступ
   description_seo: Замовте унікальний виступ та майстер-клас з футбольного
@@ -38,6 +40,7 @@ ru:
   whyUs_card2_description: Зрители становятся частью выступления, что делает шоу ещё ярче.
   about_title: Шоу футбольного фристайла:что это?
   whyUs_card3_description: Выступление адаптируется под любое событие и аудиторию.
+  map_image_mobile: /uploads/mapMobile.svg
   about_description: >-
     Футбольный фристайл – это зрелищные трюки с мячом в сочетании с музыкой,
     акробатикой и драйвом. Это не футбол в классическом понимании, а настоящее
@@ -53,6 +56,7 @@ ru:
   hero_poster_desktop: /uploads/poster_desktop.webp
   hero_video_desktop: /uploads/video_desktop.mp4
   hero_title: Шоу футбольного фристайла от команды CUBE
+  map_image_desktop: /uploads/mapDesktop.svg
   title_seo: Заказать Шоу Футбольного Фристайла в Днепре и Украине — Команда CUBE
   hero_button: Заказать выступление
   description_seo: Заказывайте уникальное выступление и мастер-класс по

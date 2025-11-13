@@ -101,7 +101,7 @@ export default async function PortfolioPage({ params }: { params: any }) {
             {portfolio.title}
           </h1>
 
-          <div className="w-full px-4 xl:px-40 mt-14 xl:mt-24 flex justify-center z-50">
+          <div className="w-full px-4 xl:px-40 mt-14 xl:mt-24 flex justify-center z-[2]">
             <EventsGrid events={events as any} locale={locale} />
           </div>
 

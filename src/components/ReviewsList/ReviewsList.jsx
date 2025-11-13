@@ -80,12 +80,20 @@ export default function ReviewsList({
         </div>
 
         <div className="mt-4 lg:mt-8 max-w-full flex justify-center gap-12">
-          <button type="button" className="reviews-prev">
+          <button
+            aria-label="Попередній відгук"
+            type="button"
+            className="reviews-prev"
+          >
             <svg width="24" height="24" style={{ color: arrowColor }}>
               <use href="/sprite.svg#ArrowLeftGray" />
             </svg>
           </button>
-          <button type="button" className="reviews-next">
+          <button
+            aria-label="Наступний відгук"
+            type="button"
+            className="reviews-next"
+          >
             <svg width="24" height="24" style={{ color: arrowColor }}>
               <use href="/sprite.svg#ArrowRightGray" />
             </svg>

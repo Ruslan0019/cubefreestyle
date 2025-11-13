@@ -1,4 +1,4 @@
-# local_backend: true
+local_backend: true
 backend:
   name: git-gateway
   branch: main
@@ -16,6 +16,37 @@ collections:
     label: "Сторінки"
     i18n: true
     files:
+      - name: "header_footer"
+        label: "Header та Footer"
+        file: "content/pages/header_footer.md"
+        i18n: true
+        fields:
+          - {
+              name: "telephone",
+              label: "Телефон",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "instagram",
+              label: "Instagram URL",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "telegram",
+              label: "Telegram URL",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              name: "youtube",
+              label: "YouTube URL",
+              widget: "string",
+              i18n: true,
+            }
+          - { name: "viber", label: "Viber URL", widget: "string", i18n: true }
+
       - name: "home"
         label: "Сторінка головна"
         file: "content/pages/home.md"
@@ -124,11 +155,18 @@ collections:
               i18n: true,
             }
           - {
-              name: "serice_title",
-              label: "serice_title",
-              widget: "string",
+              name: "map_image_desktop",
+              label: "Зображення карти (Desktop)",
+              widget: "image",
               i18n: true,
             }
+          - {
+              name: "map_image_mobile",
+              label: "Зображення карти (Mobile)",
+              widget: "image",
+              i18n: true,
+            }
+
       - name: "about"
         label: "Сторінка про нас"
         file: "content/pages/about.md"
@@ -384,6 +422,7 @@ collections:
               widget: "string",
               i18n: true,
             }
+
       - name: "privacy_policy"
         label: "Сторінка політика конфіденційності"
         file: "content/pages/privacy_policy.md"

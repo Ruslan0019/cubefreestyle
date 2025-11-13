@@ -205,7 +205,19 @@
     "clients": "Клієнти",
     "contacts": "Контакти",
     "privacy-policy": "Політика конфіденційності",
-    "terms-of-use": "Правила користування"
+    "terms-of-use": "Правила користування",
+    "home_link": "На головну сторінку",
+    "call_us": "Подзвонити нам",
+    "open_telegram": "Відкрити Telegram",
+    "open_viber": "Відкрити Viber",
+    "open_menu": "Відкрити меню",
+    "close_menu": "Закрити меню",
+    "previous_service": "Попередня послуга",
+    "next_service": "Наступна послуга",
+    "previous_review": "Попередній відгук",
+    "next_review": "Наступний відгук",
+    "open_youtube": "Відкрити YouTube",
+    "open_instagram": "Відкрити instagram"
   },
   "Footer": {
     "copyright": "Всі права захищені"

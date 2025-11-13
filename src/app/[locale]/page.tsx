@@ -146,7 +146,7 @@ export default async function HomePage({ params }: any) {
 
       {/* WHY US */}
       <section className="bg-gray-50 py-20 px-6 w-full">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="max-w-[982px] xl:max-w-[1158px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="flex justify-center lg:justify-start">
             <Image
               src="/uploads/Footballer.webp"
@@ -158,7 +158,7 @@ export default async function HomePage({ params }: any) {
             />
           </div>
 
-          <div>
+          <div className="w-full max-w-[327px] lg:max-w-[510px] xl:max-w-[569px] m-auto">
             <h2 className="text-3xl text-dark font-bold mb-8">
               {page.whyUs_title}
             </h2>
@@ -215,7 +215,7 @@ export default async function HomePage({ params }: any) {
       </h2>
       <section className="mx-auto w-full max-w-[376px] lg:max-w-[800px] h-[662px] lg:h-[644px] px-6 lg:px-10 xl:px-[160px] aspect-[376/500] lg:aspect-[800/450] relative">
         <Image
-          src="/uploads/mapMobile.svg"
+          src={page.map_image_mobile}
           alt="Карта"
           fill
           loading="lazy"
@@ -223,7 +223,7 @@ export default async function HomePage({ params }: any) {
           sizes="(min-width:1024px) 0px, 376px"
         />
         <Image
-          src="/uploads/mapDesktop.svg"
+          src={page.map_image_desktop}
           alt="Карта"
           fill
           loading="lazy"

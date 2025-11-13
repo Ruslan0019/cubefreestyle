@@ -6,40 +6,44 @@ import LangSwitcher from "../LangSwitcher/LangSwitcher";
 import { useTranslations } from "next-intl";
 import ServicesDropdown from "../ServicesDropdownHeader/ServicesDropdownHeader";
 
-export default function Header({ services = [], locale }) {
+export default function Header({ services = [], pageData, locale }) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Navigations");
-  const pathname = usePathname(); // ✅ отслеживаем текущий маршрут
+  const pathname = usePathname();
 
-  // ✅ закрываем меню при переходе на другую страницу
   useEffect(() => {
     if (isOpen) setIsOpen(false);
   }, [pathname]);
 
   return (
-    <header className="w-full border-b bg-white shadow-sm fixed top-0 z-100 xl:relative h-[80px]">
+    <header className="w-full border-b bg-white shadow-sm fixed top-0 z-[30] xl:relative h-[80px]">
       <div className="mx-auto w-full max-w-[375px] lg:max-w-[1024px] xl:max-w-[1440px] px-4 sm:px-6 lg:px-10 xl:px-[160px] py-3 lg:py-4">
+        {/* ====== DESKTOP ====== */}
         <div className="hidden lg:flex items-center justify-between">
+          {/* === Логотип === */}
           <Link
             href="/"
-            className="flex items-center space-x-2  hover:scale-110 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+            aria-label={t("home_link")}
+            title={t("home_link")}
+            className="flex items-center space-x-2 hover:scale-110 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           >
-            <svg width="80" height="48">
+            <svg width="80" height="48" aria-hidden="true">
               <use href="/sprite.svg#CubeLogo" />
             </svg>
           </Link>
 
+          {/* === Навигация === */}
           <nav className="flex-1 items-center justify-center space-x-6 flex">
             <Link
               href="/about-cube"
-              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+              className="text-gray-700 hover:text-primary hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("about")}
             </Link>
 
             <Link
               href="/portfolio"
-              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+              className="text-gray-700 hover:text-primary hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("portfolio")}
             </Link>
@@ -48,39 +52,52 @@ export default function Header({ services = [], locale }) {
 
             <Link
               href="/clients"
-              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+              className="text-gray-700 hover:text-primary hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("clients")}
             </Link>
+
             <Link
               href="/contacts"
-              className="text-gray-700 hover:text-primary  hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+              className="text-gray-700 hover:text-primary hover:scale-105 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               {t("contacts")}
             </Link>
           </nav>
 
+          {/* === Контакты и язык === */}
           <div className="items-center space-x-4 flex">
-            <a href="tel:+380505926134" className="text-gray-700 text-sm">
-              +38 (050) 592 61 34
-            </a>
             <a
-              href="https://t.me/alive_now"
+              href={`tel:${pageData.telephone}`}
+              aria-label={t("call_us")}
+              title={t("call_us")}
+              className="text-gray-700 text-sm"
+            >
+              {pageData.telephone}
+            </a>
+
+            <a
+              href={pageData.telegram}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t("open_telegram")}
+              title={t("open_telegram")}
               className="transition-transform duration-200 hover:scale-115"
             >
-              <svg width="24" height="24">
+              <svg width="24" height="24" aria-hidden="true">
                 <use href="/sprite.svg#telegram" />
               </svg>
             </a>
+
             <a
-              href="https://connect.viber.com/business/fcceef18-9c6b-11f0-a222-46fc2ffa8d57"
+              href={pageData.viber}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t("open_viber")}
+              title={t("open_viber")}
               className="transition-transform duration-200 hover:scale-115"
             >
-              <svg width="24" height="24">
+              <svg width="24" height="24" aria-hidden="true">
                 <use href="/sprite.svg#viber" />
               </svg>
             </a>
@@ -89,10 +106,12 @@ export default function Header({ services = [], locale }) {
           </div>
         </div>
 
+        {/* ====== MOBILE ====== */}
         <div className="grid grid-cols-3 items-center lg:hidden">
+          {/* === Бургер === */}
           <div className="flex justify-start">
             <button
-              aria-label="Відкрити меню"
+              aria-label={isOpen ? t("close_menu") : t("open_menu")}
               onClick={() => setIsOpen(!isOpen)}
               className="focus:outline-none"
             >
@@ -130,15 +149,19 @@ export default function Header({ services = [], locale }) {
             </button>
           </div>
 
+          {/* === Логотип === */}
           <div className="flex justify-center">
             <Link
               href="/"
+              aria-label={t("home_link")}
+              title={t("home_link")}
               className="flex items-center active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
             >
               <svg
                 className="w-20 h-12"
                 viewBox="0 0 80 48"
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
               >
                 <path
                   fill="#0B63E5"
@@ -152,12 +175,17 @@ export default function Header({ services = [], locale }) {
             </Link>
           </div>
 
+          {/* === Телефон / язык === */}
           <div className="flex justify-end">
             {isOpen ? (
               <LangSwitcher />
             ) : (
-              <a href="tel:+380505926134">
-                <svg width="40" height="40">
+              <a
+                href="tel:+380505926134"
+                aria-label={t("call_us")}
+                title={t("call_us")}
+              >
+                <svg width="40" height="40" aria-hidden="true">
                   <use href="/sprite.svg#phone" />
                 </svg>
               </a>
@@ -166,24 +194,26 @@ export default function Header({ services = [], locale }) {
         </div>
       </div>
 
+      {/* === MOBILE DROPDOWN === */}
       {isOpen && (
         <div className="flex flex-col justify-center items-center lg:hidden border-t bg-white px-4 py-2 space-y-2">
           <Link
             href="/about-cube"
-            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+            className="block text-gray-700 hover:text-primary active:scale-90 transition-all duration-200 ease-in-out"
           >
             {t("about")}
           </Link>
 
           <Link
             href="/portfolio"
-            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+            className="block text-gray-700 hover:text-primary active:scale-90 transition-all duration-200 ease-in-out"
           >
             {t("portfolio")}
           </Link>
+
           <Link
             href="/clients"
-            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+            className="block text-gray-700 hover:text-primary active:scale-90 transition-all duration-200 ease-in-out"
           >
             {t("clients")}
           </Link>
@@ -192,7 +222,7 @@ export default function Header({ services = [], locale }) {
 
           <Link
             href="/contacts"
-            className="block text-gray-700 hover:text-primary active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
+            className="block text-gray-700 hover:text-primary active:scale-90 transition-all duration-200 ease-in-out"
           >
             {t("contacts")}
           </Link>

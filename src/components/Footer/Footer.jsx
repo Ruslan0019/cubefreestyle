@@ -4,7 +4,7 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-function Footer() {
+function Footer({ pageData }) {
   const date = new Date().getFullYear();
   const t = useTranslations();
 
@@ -20,6 +20,8 @@ function Footer() {
         <Link
           className=" hover:scale-110 active:scale-90 active:text-primary/80 transition-all duration-200 ease-in-out"
           href="/"
+          aria-label={t("Navigations.home_link")}
+          title={t("Navigations.home_link")}
         >
           <svg width="48" height="74">
             <use href="/sprite.svg#CubeFooter" />
@@ -71,17 +73,21 @@ function Footer() {
         <address className="mb-8">
           <div className="mb-4">
             <a
-              href="tel:+380505926134"
+              href={`tel:${pageData.telephone}`}
+              aria-label={t("Navigations.call_us")}
+              title={t("Navigations.call_us")}
               className="text-white text-lg font-normal leading-6"
             >
-              +38 (050) 592 61 34
+              {pageData.telephone}
             </a>
           </div>
           <div className="flex flex-row justify-center gap-4">
             <a
               className="transition-transform hover:scale-115"
               target="_blank"
-              href="https://www.instagram.com/cubefreestyleteam"
+              aria-label={t("Navigations.open_instagram")}
+              title={t("Navigations.open_instagram")}
+              href={pageData.instagram}
             >
               <svg width="44" height="44">
                 <use href="/sprite.svg#instagramIcon" />
@@ -90,7 +96,9 @@ function Footer() {
             <a
               className="transition-transform hover:scale-115"
               target="_blank"
-              href="https://www.youtube.com/@CUBEFreestyleTeam"
+              aria-label={t("Navigations.open_youtube")}
+              title={t("Navigations.open_youtube")}
+              href={pageData.youtube}
             >
               <svg width="44" height="44">
                 <use href="/sprite.svg#youtubeIcon" />
