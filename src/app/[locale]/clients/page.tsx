@@ -75,7 +75,7 @@ export default async function ClientsPage({ params }: any) {
       <section className="flex flex-col items-center w-full bg-white text-dark">
         <div className="relative flex flex-col items-center justify-start w-full bg-white">
           <HeroArc />
-          <h1 className="mt-12 lg:mt-14 text-[36px] leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px] z-10">
+          <h1 className="mt-12 lg:mt-14 text-[36px] leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px] z-1">
             {clientsPage.title}
           </h1>
           <p className="z-10 mt-4 lg:mt-6 max-w-[343px] lg:max-w-[804px] text-[16px] lg:text-[18px] font-semibold text-white text-center">

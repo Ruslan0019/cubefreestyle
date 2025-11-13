@@ -97,7 +97,7 @@ export default async function PortfolioPage({ params }: { params: any }) {
       <section className="flex flex-col items-center w-full bg-white text-dark">
         <div className="relative flex flex-col items-center justify-start w-full bg-white">
           <HeroArc />
-          <h1 className="mt-12 lg:mt-14 text-[36px] leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px] z-10">
+          <h1 className="mt-12 lg:mt-14 text-[36px] leading-[40px] lg:text-[48px] lg:leading-[56px] xl:text-[62px] xl:leading-[72px] font-bold text-white text-center max-w-[343px] lg:max-w-[983px] z-1">
             {portfolio.title}
           </h1>
 

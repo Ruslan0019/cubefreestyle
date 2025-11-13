@@ -1,0 +1,2 @@
+/:lang/*/ /:lang/:splat 301!
+/*/ /:splat 301!

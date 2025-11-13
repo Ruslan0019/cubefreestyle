@@ -75,11 +75,11 @@ export async function generateMetadata({
 
   return {
     alternates: {
-      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}${member.slug}`,
+      canonical: `${baseUrl}/${locale === "ru" ? "ru/" : ""}team/${member.slug}`,
       languages: {
-        uk: `${baseUrl}/${member.slug}`,
-        ru: `${baseUrl}/ru/${member.slug}`,
-        "x-default": `${baseUrl}/${member.slug}`,
+        uk: `${baseUrl}/team/${member.slug}`,
+        ru: `${baseUrl}/ru/team/${member.slug}`,
+        "x-default": `${baseUrl}/team/${member.slug}`,
       },
     },
     title: member.title_seo,
